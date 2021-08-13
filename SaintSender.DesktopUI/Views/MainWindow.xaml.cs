@@ -29,6 +29,7 @@ namespace SaintSender.DesktopUI
         {
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
+            System.Console.WriteLine("Bob");
         }
     }
 }

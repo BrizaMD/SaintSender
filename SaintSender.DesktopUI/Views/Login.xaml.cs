@@ -26,7 +26,17 @@ namespace SaintSender.DesktopUI.Views
 
         private void LoginButton(object sender, RoutedEventArgs e)
         {
+            PasswordBox.SelectAll();
+            PasswordBox.Focus();
+            EmailBox.SelectAll();
+            EmailBox.Focus();
             this.DialogResult = true;
+
+        }
+
+        public string Email 
+        { 
+            get { return EmailBox.Text; }
         }
 
     }
