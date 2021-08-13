@@ -10,6 +10,7 @@ namespace SaintSender.DesktopUI
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _vm;
+        private bool isLoggedIn;
 
         public MainWindow()
         {
@@ -17,6 +18,7 @@ namespace SaintSender.DesktopUI
             _vm = new MainWindowViewModel();
             DataContext = _vm;
             InitializeComponent();
+            isLoggedIn = false;
         }
 
         private void GreetBtn_Click(object sender, RoutedEventArgs e)
@@ -27,9 +29,22 @@ namespace SaintSender.DesktopUI
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            Login loginWindow = new Login();
-            loginWindow.ShowDialog();
-            System.Console.WriteLine("Bob");
+            if (isLoggedIn)
+            {
+                LoginState.Content = "Login";
+                isLoggedIn = false;
+                MessageBox.Show("You have logged out!");
+            }
+            else
+            {
+                Login loginWindow = new Login();
+                loginWindow.ShowDialog();
+                LoginState.Content = "Logout";
+                isLoggedIn = true;
+            }
+            
+            // validate login format and authenticate
+            
         }
     }
 }

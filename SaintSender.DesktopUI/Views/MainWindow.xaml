@@ -31,7 +31,8 @@
                    VerticalAlignment="Top" />
 
 
-        <Button Margin="33,293,430.333,-0.333" 
+        <Button Name="LoginState"
+                Margin="33,293,430.333,-0.333" 
                 Content="Login" 
                 Cursor="Hand"
                 FontSize="20"
