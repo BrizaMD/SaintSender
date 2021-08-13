@@ -5,8 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+    <ListView 
+        SelectionChanged="ListViewSelectionChanged"
+        Width="1000" 
+        Height="400"
+        >
+        <ListView.ItemContainerStyle>
+            <Style TargetType="{x:Type ListViewItem}">
+                <Setter Property="HorizontalContentAlignment" 
+                        Value="Stretch" />
+            </Style>
+        </ListView.ItemContainerStyle>
+        <ListView.View>
+            <GridView>
+                <GridViewColumn 
+                    Header="From" 
+                    Width="200"
+                    />
+                <GridViewColumn 
+                    Header="Title" 
+                    Width="200" />
+
+                <GridViewColumn 
+                    Header="Message" 
+                    Width="200" />
+
+
+                <GridViewColumn 
+                    Header="Received"
+                    Width="200" />
+
+            </GridView>
+        </ListView.View>
+    </ListView>
 </UserControl>
