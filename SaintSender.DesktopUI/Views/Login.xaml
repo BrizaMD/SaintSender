@@ -5,8 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <Grid>
-        
+        Title="Login" Height="387" 
+        Width="528" 
+        Background="Black"
+        >
+
+    <Grid  Height="350" Width="525">
+        <Grid Margin="31,0,29,23" Background="White" 
+              Height="264" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="252*" />
+            </Grid.RowDefinitions>
+            <TextBlock Height="20" 
+                       HorizontalAlignment="Left" 
+                       Margin="67,0,0,0" 
+                       x:Name ="errormessage" 
+                       VerticalAlignment="Top" 
+                       Width="247"  
+                       OpacityMask="Crimson" 
+                       Foreground="#FFE5572C" />
+            <TextBlock 
+                Height="23" 
+                HorizontalAlignment="Left" 
+                Margin="67,20,0,0" 
+                Name="textBlockFirstname" 
+                Text="E-mail" 
+                VerticalAlignment="Top" 
+                Width="110" />
+
+            <TextBlock Height="23" 
+                       HorizontalAlignment="Left" 
+                       Margin="67,50,0,0"
+                       Name="textBlockLastName" 
+                       Text="Password" 
+                       VerticalAlignment="Top" 
+                       Width="110" />
+
+
+            <TextBox Height="23" 
+                     HorizontalAlignment="Left" 
+                     Margin="183,20,0,0"
+                     Name="textBoxName"
+                     VerticalAlignment="Top" 
+                     Width="222" />
+
+            <PasswordBox Height="23" 
+                         HorizontalAlignment="Left" 
+                         Margin="183,50,0,0" 
+                         Name="textBoxPhone" 
+                         VerticalAlignment="Top" 
+                         Width="222" />
+
+
+
+            <Button Content="Save" 
+                    Height="23" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,204,60,0" 
+                    Name="buttonSave" 
+                    VerticalAlignment="Top" 
+                    Width="70"
+                    Cursor="Hand" 
+                    >
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock TextDecorations="Underline">  
+                    <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" 
+                                Value="Navy" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="true">
+                                <Setter Property="Foreground" 
+                                        Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+        </Grid>
     </Grid>
 </Window>
