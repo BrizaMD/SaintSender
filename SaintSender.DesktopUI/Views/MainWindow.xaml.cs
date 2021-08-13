@@ -21,11 +21,7 @@ namespace SaintSender.DesktopUI
             isLoggedIn = false;
         }
 
-        private void GreetBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // dispatch user interaction to view model
-            _vm.Greet();
-        }
+
 
         private void Login(object sender, RoutedEventArgs e)
         {
@@ -42,9 +38,9 @@ namespace SaintSender.DesktopUI
                 LoginState.Content = "Logout";
                 isLoggedIn = true;
             }
-            
+
             // validate login format and authenticate
-            
+
         }
     }
 }

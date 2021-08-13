@@ -9,28 +9,23 @@
         Height="450"
         Width="800">
     <Grid>
-        <TextBox Text="{Binding Name}"
-                 ToolTip="Write a name here a click the Greet button"
-                 HorizontalAlignment="Left"
-                 Height="23"
-                 Margin="10,10,0,0"
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top"
-                 Width="120" />
-        <Button Content="Greet"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Width="75"
-                Margin="140,13,0,0"
-                Click="GreetBtn_Click" />
-        <TextBlock Text="{Binding Greeting}"
-                   HorizontalAlignment="Left"
-                   Margin="10,45,0,0"
-                   FontSize="28"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Top" />
+        <Canvas 
+            x:Name="Header" 
+            HorizontalAlignment="Left" 
+            Height="60" 
+            VerticalAlignment="Top" 
+            Width="800" 
+            Background="Crimson" 
+            Opacity="0.8"
+            Margin="0,24,0,0" 
+            Grid.ColumnSpan="2">
+
+            <Button Canvas.Left="717" Canvas.Top="40">Refresh</Button>
+            <Button Canvas.Top="40">Previous</Button>
+            <Button Canvas.Left="65" Canvas.Top="40">Next</Button>
 
 
+        </Canvas>
 
         <TabControl   
                 Height="200"
