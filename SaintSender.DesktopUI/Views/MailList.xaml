@@ -19,22 +19,29 @@
             </Style>
         </ListView.ItemContainerStyle>
         <ListView.View>
+
             <GridView>
+
                 <GridViewColumn 
-                    Header="From" 
+                    Width="200"
+                    Header="Read / Unread"
+                    >
+                </GridViewColumn>
+
+                <GridViewColumn 
+                    Header="Sender" 
                     Width="200"
                     />
                 <GridViewColumn 
-                    Header="Title" 
+                    Header="Subject" 
                     Width="200" />
 
                 <GridViewColumn 
                     Header="Message" 
                     Width="200" />
 
-
                 <GridViewColumn 
-                    Header="Received"
+                    Header="Date"
                     Width="200" />
 
             </GridView>
