@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore ./processNote/
+      run: dotnet restore ./SaintSender/
     - name: Build
-      run: dotnet build --no-restore ./processNote
+      run: dotnet build --no-restore ./SaintSender
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./processNote
+      run: dotnet test --no-build --verbosity normal ./SaintSender
