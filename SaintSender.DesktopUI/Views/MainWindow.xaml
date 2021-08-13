@@ -20,10 +20,12 @@
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
 
-            <Button Canvas.Left="717" Canvas.Top="40">Refresh</Button>
+            <Button Canvas.Left="721" Canvas.Top="30">Refresh</Button>
+            <Button Canvas.Left="674" Canvas.Top="30" RenderTransformOrigin="1.607,0.328">Backup</Button>
             <Button Canvas.Top="40">Previous</Button>
             <Button Canvas.Left="65" Canvas.Top="40">Next</Button>
-
+            <CheckBox Canvas.Left="667" Canvas.Top="10">Stay logged-in</CheckBox>
+            <Button Canvas.Top="35" Canvas.Left="360">Forget Me</Button>
 
         </Canvas>
 
