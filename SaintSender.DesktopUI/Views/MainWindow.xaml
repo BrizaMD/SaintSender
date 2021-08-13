@@ -29,5 +29,31 @@
                    FontSize="28"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top" />
+
+
+        <Button Name="LoginState"
+                Margin="33,293,430.333,-0.333" 
+                Content="Login" 
+                Cursor="Hand"
+                FontSize="20"
+                FontWeight="Bold" Click="Login">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock TextDecorations="Underline">  
+                    <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="DarkGoldenrod" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>
