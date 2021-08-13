@@ -54,18 +54,18 @@
                          Margin="183,50,0,0" 
                          Name="textBoxPhone" 
                          VerticalAlignment="Top" 
-                         Width="222" />
+                         Width="222"/>
 
 
 
-            <Button Content="Save" 
+            <Button Content="Login" 
                     Height="23" 
                     HorizontalAlignment="Right" 
                     Margin="0,204,60,0" 
                     Name="buttonSave" 
                     VerticalAlignment="Top" 
                     Width="70"
-                    Cursor="Hand" 
+                    Cursor="Hand" Click="LoginButton"
                     >
 
                 <Button.Template>

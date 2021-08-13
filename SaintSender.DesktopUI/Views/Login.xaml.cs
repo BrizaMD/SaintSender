@@ -23,5 +23,11 @@ namespace SaintSender.DesktopUI.Views
         {
             InitializeComponent();
         }
+
+        private void LoginButton(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
     }
 }

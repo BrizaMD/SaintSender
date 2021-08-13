@@ -1,4 +1,5 @@
 ﻿using SaintSender.DesktopUI.ViewModels;
+using SaintSender.DesktopUI.Views;
 using System.Windows;
 
 namespace SaintSender.DesktopUI
@@ -22,6 +23,12 @@ namespace SaintSender.DesktopUI
         {
             // dispatch user interaction to view model
             _vm.Greet();
+        }
+
+        private void Login(object sender, RoutedEventArgs e)
+        {
+            Login loginWindow = new Login();
+            loginWindow.ShowDialog();
         }
     }
 }
