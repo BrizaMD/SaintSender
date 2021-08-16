@@ -13,31 +13,42 @@
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using MailKit.Net.Imap;
 
     /// <summary>
     /// Interaction logic for Login.xaml.
     /// </summary>
+    ///cc.dreamteamdeluxe@gmail.com
+    //unclebob
     public partial class Login : Window
     {
         public Login()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void LoginButton(object sender, RoutedEventArgs e)
         {
-            PasswordBox.SelectAll();
-            PasswordBox.Focus();
-            EmailBox.SelectAll();
-            EmailBox.Focus();
-            this.DialogResult = true;
+            if (isValidInputs())
+            {
+                this.PasswordBox.SelectAll();
+                this.PasswordBox.Focus();
+                this.EmailBox.SelectAll();
+                this.EmailBox.Focus();
+                this.DialogResult = true;
+            }
+        }
 
+        public void Connect() { }
+
+        private bool isValidInputs()
+        {
+            return true;
         }
 
         public string Email
         {
             get { return EmailBox.Text; }
         }
-
     }
 }
