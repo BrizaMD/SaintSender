@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    interface Login
+    interface ILogin
     {
 
         bool ValidateEmail(string email);

@@ -10,7 +10,7 @@
     using System.Text.RegularExpressions;
     using System.Windows;
 
-    public class Validation : Login
+    public class Validation : ILogin
     {
         private const string EmailPattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
         private const string PasswordRequirements = @"^[A - Za - z0 - 9_ -] * $";

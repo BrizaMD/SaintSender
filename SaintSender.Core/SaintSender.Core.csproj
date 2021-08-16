@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\Login.cs" />
+    <Compile Include="Interfaces\IInbox.cs" />
+    <Compile Include="Interfaces\ILogin.cs" />
+    <Compile Include="Services\InboxService.cs" />
     <Compile Include="Services\Mail.cs" />
     <Compile Include="Services\Validation.cs" />
     <Compile Include="Services\GreetService.cs" />

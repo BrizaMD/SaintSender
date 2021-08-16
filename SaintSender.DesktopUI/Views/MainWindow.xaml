@@ -45,33 +45,6 @@
 
 
         </Grid>
-        <!--<TabControl   
-                Height="200"
-                Width="400" 
-            RenderTransformOrigin="0.5,0.5" 
-            Canvas.Top="-3" 
-            Canvas.Left="10">
-            <TabControl.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.214"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.746"/>
-                </TransformGroup>
-            </TabControl.RenderTransform>
-            <TabItem 
-                    Header="Inbox">
-                <local1:MailList 
-                        FontSize="15" 
-                        RenderTransformOrigin="0.567,0.532"
-                        HorizontalAlignment="Left"
-                        Height="526" 
-                    Width="1022" 
-                        Margin="-7,0,0,0"
-                        />
-            </TabItem>
-        </TabControl>-->
-
 
         <Button Name="LoginState"
                 Margin="30,320,680,60" 
