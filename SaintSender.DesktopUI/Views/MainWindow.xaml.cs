@@ -47,6 +47,8 @@
             {
                 this.LoginState.Content = "Login";
                 this.isLoggedIn = false;
+                Inbox.Visibility = Visibility.Hidden;
+                UserControls.Visibility = Visibility.Hidden;
                 MessageBox.Show("You have logged out!");
             }
             else
@@ -57,6 +59,7 @@
                 this.isLoggedIn = true;
                 List<Mail> mails = new InboxService().CreateMails(loginWindow.FullInbox);
                 Inbox.Visibility = Visibility.Visible;
+                UserControls.Visibility = Visibility.Visible;
                 Inbox.ItemsSource = mails;
             }
         }

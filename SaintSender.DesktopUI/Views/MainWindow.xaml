@@ -10,7 +10,7 @@
         Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="bg.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Canvas 
             x:Name="Header" 
@@ -22,14 +22,14 @@
             Opacity="0.8"
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
-
-            <Button Canvas.Left="721" Canvas.Top="30">Refresh</Button>
-            <Button Canvas.Left="674" Canvas.Top="30" RenderTransformOrigin="1.607,0.328">Backup</Button>
-            <Button Canvas.Top="40">Previous</Button>
-            <Button Canvas.Left="65" Canvas.Top="40">Next</Button>
-            <CheckBox Canvas.Left="667" Canvas.Top="10">Stay logged-in</CheckBox>
-            <Button Canvas.Top="35" Canvas.Left="380">Forget Me</Button>
-
+            <Grid Name="UserControls" Visibility="Hidden">
+                <Button Canvas.Left="721" Canvas.Top="30" Margin="12,117,-12,-117">Refresh</Button>
+                <Button Canvas.Left="674" Canvas.Top="30" RenderTransformOrigin="1.607,0.328" Margin="131,117,-131,-117">Backup</Button>
+                <Button Canvas.Top="40" Margin="12,69,-12,-69">Previous</Button>
+                <Button Canvas.Left="65" Canvas.Top="40" Margin="131,69,-131,-69">Next</Button>
+                <CheckBox Canvas.Left="667" Canvas.Top="10" Margin="10,8,-10,-8">Stay logged-in</CheckBox>
+                <Button Canvas.Top="35" Canvas.Left="380" Margin="12,33,-12,-33">Forget Me</Button>
+            </Grid>
         </Canvas>
 
 
@@ -56,11 +56,12 @@
         </Grid>
 
         <Button Name="LoginState"
-                Margin="525,33,185,347" 
+                Margin="679,45,31,335" 
                 Content="Login" 
                 Cursor="Hand"
                 FontSize="20"
-                FontWeight="Bold" Click="Login">
+                FontWeight="Bold"
+                Click="Login">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <TextBlock TextDecorations="Underline">  
