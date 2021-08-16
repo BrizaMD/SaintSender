@@ -1,11 +1,11 @@
-﻿using SaintSender.DesktopUI.ViewModels;
-using SaintSender.DesktopUI.Views;
-using System.Windows;
-
-namespace SaintSender.DesktopUI
+﻿namespace SaintSender.DesktopUI
 {
+    using System.Windows;
+    using SaintSender.DesktopUI.ViewModels;
+    using SaintSender.DesktopUI.Views;
+
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -15,32 +15,31 @@ namespace SaintSender.DesktopUI
         public MainWindow()
         {
             // set DataContext to the ViewModel object
-            _vm = new MainWindowViewModel();
-            DataContext = _vm;
-            InitializeComponent();
-            isLoggedIn = false;
+            this._vm = new MainWindowViewModel();
+            this.DataContext = this._vm;
+            this.InitializeComponent();
+            this.isLoggedIn = false;
         }
 
 
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            if (isLoggedIn)
+            if (this.isLoggedIn)
             {
-                LoginState.Content = "Login";
-                isLoggedIn = false;
+                this.LoginState.Content = "Login";
+                this.isLoggedIn = false;
                 MessageBox.Show("You have logged out!");
             }
             else
             {
                 Login loginWindow = new Login();
                 loginWindow.ShowDialog();
-                LoginState.Content = "Logout";
-                isLoggedIn = true;
+                this.LoginState.Content = "Logout";
+                this.isLoggedIn = true;
             }
 
             // validate login format and authenticate
-
         }
     }
 }
