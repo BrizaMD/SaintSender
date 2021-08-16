@@ -55,25 +55,9 @@
                 loginWindow.ShowDialog();
                 this.LoginState.Content = "Logout";
                 this.isLoggedIn = true;
-                List<Mail> mails = CreateMails(loginWindow.FullInbox);
+                List<Mail> mails = new InboxService().CreateMails(loginWindow.FullInbox);
                 Inbox.ItemsSource = mails;
             }
-        }
-
-        private List<Mail> CreateMails(List<MimeKit.MimeMessage> inbox)
-        {
-            List<Mail> mails = new List<Mail>();
-            foreach (var item in inbox)
-            {
-                mails.Add(new Mail()
-                {
-                    Subject = item.Subject,
-                    From = item.From.ToString(),
-                    Date = item.Date.DateTime,
-                });
-            }
-
-            return mails;
         }
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
+﻿using SaintSender.Core.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintSender.Core.Interfaces
 {
     interface IInbox
     {
-        void SortMail();
+        List<Mail> CreateMails(List<MimeKit.MimeMessage> inbox);
     }
 }
