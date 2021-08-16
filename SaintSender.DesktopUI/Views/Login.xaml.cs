@@ -1,13 +1,9 @@
 ﻿namespace SaintSender.DesktopUI.Views
 {
-    using MailKit;
-    using MailKit.Net.Imap;
-    using MailKit.Security;
-    using System.Linq;
-    using System.Windows;
+    using MimeKit;
     using SaintSender.Core.Services;
     using System.Collections.Generic;
-    using MimeKit;
+    using System.Windows;
 
     /// <summary>
     /// Interaction logic for Login.xaml.

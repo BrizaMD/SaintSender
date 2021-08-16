@@ -2,7 +2,6 @@
 {
     using SaintSender.Core.Services;
     using System.Collections.Generic;
-    using System.Data;
     using System.Windows.Controls;
 
     /// <summary>
