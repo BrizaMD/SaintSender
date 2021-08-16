@@ -130,6 +130,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="stylecop.json" />
+    <None Include="stylecop1.json" />
     <None Include="ViewModels\ReadMe.mmd" />
   </ItemGroup>
   <ItemGroup>

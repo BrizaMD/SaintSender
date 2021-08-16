@@ -14,12 +14,15 @@
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
     using MailKit.Net.Imap;
+    using System.Net.Mail;
 
     /// <summary>
     /// Interaction logic for Login.xaml.
     /// </summary>
-    ///cc.dreamteamdeluxe@gmail.com
-    //unclebob
+
+    //e-mail : cc.dreamteamdeluxe@gmail.com
+    //password : unclebob
+
     public partial class Login : Window
     {
         public Login()
@@ -29,19 +32,46 @@
 
         private void LoginButton(object sender, RoutedEventArgs e)
         {
-            if (isValidInputs())
+            if (IsValidInputs())
             {
                 this.PasswordBox.SelectAll();
                 this.PasswordBox.Focus();
                 this.EmailBox.SelectAll();
                 this.EmailBox.Focus();
                 this.DialogResult = true;
+
+
             }
         }
 
-        public void Connect() { }
+        public void Connect(string user, string password)
+        {
+            //using (var client = new ImapClient(new ProtocolLogger("imap.log")))
+            //{
+            //    try
+            //    {
+            //        client.Connect(server, this.port, true);
+            //        client.AuthenticationMechanisms.Remove("XOAUTH2");
+            //        client.AuthenticationMechanisms.Remove("NTLM");
+            //        client.Authenticate(user, password);
+            //        var inbox = client.Inbox;
+            //        inbox.Open(FolderAccess.ReadWrite);
 
-        private bool isValidInputs()
+            //        if (inbox.Count > 0)
+            //        {
+            //            var range = Enumerable.Range(0, inbox.Count).ToArray();
+            //            inbox.AddFlags(range, MessageFlags.Deleted, false);
+            //            inbox.Expunge();
+            //        }
+            //        client.Disconnect(true);
+            //    }
+            //    catch (AuthenticationException e)
+            //    {
+            //        throw e;
+            //    }
+            //}
+        }
+        private bool IsValidInputs()
         {
             return true;
         }
