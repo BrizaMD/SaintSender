@@ -5,6 +5,7 @@
     using MailKit.Security;
     using System.Linq;
     using System.Windows;
+    using SaintSender.Core.Services;
 
     /// <summary>
     /// Interaction logic for Login.xaml.
@@ -40,31 +41,8 @@
 
         public void Connect(string user, string password)
         {
-            using (var client = new ImapClient(new ProtocolLogger("imap.log")))
-            {
-                try
-                {
-                    // client.Connect("smtp.gmail.com", 465, true);
-                    // client.Authenticate(user, password);
-                    client.Connect("imap.gmail.com", 993, true);
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.AuthenticationMechanisms.Remove("NTLM");
-                    client.Authenticate(user, password);
-                    var inbox = client.Inbox;
-                    inbox.Open(FolderAccess.ReadWrite);
-                    if (inbox.Count > 0)
-                    {
-                        var range = Enumerable.Range(0, inbox.Count).ToArray();
-                        inbox.AddFlags(range, MessageFlags.Deleted, false);
-                        inbox.Expunge();
-                    }
-                    client.Disconnect(true);
-                }
-                catch (AuthenticationException e)
-                {
-                    MessageBox.Show("WRONG!!!!!!!");
-                }
-            }
+            Validation tryLogin = new Validation();
+            tryLogin.Connect(user, password);
         }
 
         private bool IsValidInputs()
