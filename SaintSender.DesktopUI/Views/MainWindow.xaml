@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SaintSender.DesktopUI"
+        xmlns:local="clr-namespace:SaintSender.DesktopUI" xmlns:local1="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
         Title="SainSender"
         Height="450"
@@ -29,7 +29,15 @@
 
         </Canvas>
 
-        <TabControl   
+
+        <Grid>
+            <ListView Margin="10" Width="300" Height="100" Name="Inbox">
+
+            </ListView>
+
+
+        </Grid>
+        <!--<TabControl   
                 Height="200"
                 Width="400" 
             RenderTransformOrigin="0.5,0.5" 
@@ -45,16 +53,16 @@
             </TabControl.RenderTransform>
             <TabItem 
                     Header="Inbox">
-                <!--<local:MailList 
+                <local1:MailList 
                         FontSize="15" 
                         RenderTransformOrigin="0.567,0.532"
                         HorizontalAlignment="Left"
                         Height="526" 
                     Width="1022" 
                         Margin="-7,0,0,0"
-                        />-->
+                        />
             </TabItem>
-        </TabControl>
+        </TabControl>-->
 
 
         <Button Name="LoginState"

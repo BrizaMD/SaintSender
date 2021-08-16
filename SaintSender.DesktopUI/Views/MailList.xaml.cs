@@ -1,6 +1,8 @@
 ﻿namespace SaintSender.DesktopUI.Views
 {
+    using SaintSender.Core.Services;
     using System.Collections.Generic;
+    using System.Data;
     using System.Windows.Controls;
 
     /// <summary>
@@ -13,18 +15,43 @@
         /// </summary>
 
 
-        private List<MimeKit.MimeMessage> fullinbox;
-
-        public List<MimeKit.MimeMessage> Fullinbox { get; }
-        public MailList()
+        private List<MimeKit.MimeMessage> inbox;
+        private List<Mail> mails = new List<Mail>();
+        public MailList(List<MimeKit.MimeMessage> fullInbox)
         {
             this.InitializeComponent();
+            this.inbox = fullInbox;
+            CreateMail();
+            //InboxUI.ItemsSource = mails;
         }
 
-        public void LoadInbox(List<MimeKit.MimeMessage> FullInbox)
+        public MailList() { }
+
+        private void CreateMail()
         {
-            this.fullinbox = FullInbox;
-
+            foreach (var item in this.inbox)
+            {
+                mails.Add(new Mail() { Subject = item.Subject, From = item.From.ToString() });
+            }
         }
+
+        //public void LoadInbox(List<MimeKit.MimeMessage> FullInbox)
+        //{
+        //    this.fullinbox = FullInbox;
+
+        //    var dt = new DataTable();
+
+        //    // create columns and headers
+        //    int columnCount = 4;
+        //    // copy rows data
+        //    for (int i = 0; i < FullInbox.Count; i++)
+        //    {
+        //        dt.Rows.Add("elem");
+        //    }
+
+        //    // display in a DataGrid
+        //    dataGrid.ItemsSource = dt.DefaultView;
+
+        //}
     }
 }

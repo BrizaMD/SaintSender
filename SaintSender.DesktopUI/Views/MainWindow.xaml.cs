@@ -5,6 +5,7 @@
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
     using SaintSender.Core.Services;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -53,9 +54,19 @@
                 loginWindow.ShowDialog();
                 this.LoginState.Content = "Logout";
                 this.isLoggedIn = true;
-                MailList ml = new MailList();
-                ml.LoadInbox(loginWindow.FullInbox);
+                List<Mail> mails = CreateMails(loginWindow.FullInbox);
+                Inbox.ItemsSource = mails;
             }
+        }
+
+        private List<Mail> CreateMails(List<MimeKit.MimeMessage> inbox)
+        {
+            List<Mail> mails = new List<Mail>();
+            foreach (var item in inbox)
+            {
+                mails.Add(new Mail() { Subject = item.Subject, From = item.From.ToString() });
+            }
+            return mails;
         }
     }
 }
