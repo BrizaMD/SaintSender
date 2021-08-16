@@ -9,10 +9,10 @@ namespace SaintSender.Core.Services
 
     public class Mail
     {
-        private string subject;
-        private string from;
-        public string Subject { get => subject; set => subject = value; }
-        public string From { get => from; set => from = value; }
+        public string Subject { get; set; }
+        public string From { get; set; }
+        public bool IsMailRead { get; set; }
+        public DateTime Date { get; set; }
 
         public Mail(string subject, string from)
         {
@@ -25,7 +25,7 @@ namespace SaintSender.Core.Services
         }
         public override string ToString()
         {
-            return this.subject + " " + this.from;
+            return this.Subject + " " + this.From;
         }
     }
 }

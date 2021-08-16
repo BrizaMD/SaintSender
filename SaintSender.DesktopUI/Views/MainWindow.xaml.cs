@@ -6,6 +6,7 @@
     using SaintSender.DesktopUI.Views;
     using SaintSender.Core.Services;
     using System.Collections.Generic;
+    using System;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -64,8 +65,14 @@
             List<Mail> mails = new List<Mail>();
             foreach (var item in inbox)
             {
-                mails.Add(new Mail() { Subject = item.Subject, From = item.From.ToString() });
+                mails.Add(new Mail()
+                {
+                    Subject = item.Subject,
+                    From = item.From.ToString(),
+                    Date = item.Date.DateTime,
+                });
             }
+
             return mails;
         }
     }
