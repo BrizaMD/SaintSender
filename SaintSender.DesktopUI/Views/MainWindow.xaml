@@ -25,7 +25,7 @@
             <Button Canvas.Top="40">Previous</Button>
             <Button Canvas.Left="65" Canvas.Top="40">Next</Button>
             <CheckBox Canvas.Left="667" Canvas.Top="10">Stay logged-in</CheckBox>
-            <Button Canvas.Top="35" Canvas.Left="360">Forget Me</Button>
+            <Button Canvas.Top="35" Canvas.Left="380">Forget Me</Button>
 
         </Canvas>
 
