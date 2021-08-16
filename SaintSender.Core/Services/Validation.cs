@@ -5,6 +5,7 @@
     using MailKit.Search;
     using MailKit.Security;
     using SaintSender.Core.Interfaces;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Windows;
@@ -15,10 +16,12 @@
         private const string PasswordRequirements = @"^[A - Za - z0 - 9_ -] * $";
         private const int MinimumLengthOfPassword = 12;
 
-        public void Connect(string user, string password)
+
+        public List<MimeKit.MimeMessage> Connect(string user, string password)
         {
             using (var client = new ImapClient(new ProtocolLogger("imap.log")))
             {
+                List<MimeKit.MimeMessage> fullInbox = new List<MimeKit.MimeMessage>();
                 try
                 {
                     // client.Connect("smtp.gmail.com", 465, true);
@@ -30,9 +33,10 @@
                     var inbox = client.Inbox;
 
                     inbox.Open(FolderAccess.ReadOnly);
+
                     foreach (var mail in inbox)
                     {
-                        System.Console.WriteLine(mail.MessageId);
+                        fullInbox.Add(mail);
                     }
 
                     client.Disconnect(true);
@@ -41,6 +45,7 @@
                 {
                     MessageBox.Show("WRONG!!!!!!!");
                 }
+                return fullInbox;
             }
         }
 

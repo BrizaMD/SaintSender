@@ -4,6 +4,7 @@
     using System.Windows;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
+    using SaintSender.Core.Services;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -52,9 +53,9 @@
                 loginWindow.ShowDialog();
                 this.LoginState.Content = "Logout";
                 this.isLoggedIn = true;
+                MailList ml = new MailList();
+                ml.LoadInbox(loginWindow.FullInbox);
             }
-
-            // validate login format and authenticate
         }
     }
 }

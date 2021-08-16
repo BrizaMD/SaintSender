@@ -11,7 +11,7 @@
 
         bool ValidateEmail(string email);
         bool ValidatePassword(string password);
-        void Connect(string user, string password);
+        List<MimeKit.MimeMessage> Connect(string user, string password);
 
     }
 }
