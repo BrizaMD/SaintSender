@@ -1,43 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace SaintSender.DesktopUI.Views
+﻿namespace SaintSender.DesktopUI.Views
 {
+    using MailKit;
+    using MailKit.Net.Imap;
+    using MailKit.Security;
+    using System.Linq;
+    using System.Windows;
+    using SaintSender.Core.Services;
+    using System.Collections.Generic;
+    using MimeKit;
+
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Login.xaml.
     /// </summary>
+
+    // e-mail : cc.dreamteamdeluxe@gmail.com
+
+    // password : unclebob
     public partial class Login : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Login"/> class.
+        /// </summary>
+        /// 
+        private List<MimeKit.MimeMessage> fullInbox;
         public Login()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        public string Email => this.EmailBox.Text;
+
+        public List<MimeMessage> FullInbox { get => this.fullInbox; set => this.fullInbox = value; }
 
         private void LoginButton(object sender, RoutedEventArgs e)
         {
-            PasswordBox.SelectAll();
-            PasswordBox.Focus();
-            EmailBox.SelectAll();
-            EmailBox.Focus();
-            this.DialogResult = true;
-
+            if (this.IsValidInputs())
+            {
+                this.PasswordBox.SelectAll();
+                this.PasswordBox.Focus();
+                this.EmailBox.SelectAll();
+                this.EmailBox.Focus();
+                this.DialogResult = true;
+                this.Connect(EmailBox.Text, PasswordBox.Password);
+            }
         }
 
-        public string Email 
-        { 
-            get { return EmailBox.Text; }
+        public void Connect(string user, string password)
+        {
+            Validation tryLogin = new Validation();
+            this.fullInbox = tryLogin.Connect(user, password);
         }
 
+        private bool IsValidInputs()
+        {
+            return true;
+        }
     }
 }

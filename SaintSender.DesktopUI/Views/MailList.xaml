@@ -7,8 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
-    <ListView 
-        SelectionChanged="ListViewSelectionChanged"
+
+
+    <!--<Grid>
+        <ListView Margin="10" Name="InboxUI">-->
+
+    <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+
+                        <TextBlock Text="{Binding From}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Subject}" FontWeight="Bold" />
+
+
+                    </WrapPanel>
+
+
+                </DataTemplate>
+
+
+            </ListView.ItemTemplate>-->
+
+    <!--</ListView>
+
+
+    </Grid>-->
+    <ListView
+        ItemsSource="{Binding Path=Mails}" 
         Width="1000" 
         Height="400"
         >
@@ -29,18 +54,22 @@
                 </GridViewColumn>
 
                 <GridViewColumn 
+                    DisplayMemberBinding="{Binding Path=From}" 
                     Header="Sender" 
                     Width="200"
                     />
                 <GridViewColumn 
+                    DisplayMemberBinding="{Binding Path=Subject}" 
                     Header="Subject" 
                     Width="200" />
 
                 <GridViewColumn 
+                    DisplayMemberBinding="{Binding Path=TextBody}" 
                     Header="Message" 
                     Width="200" />
 
                 <GridViewColumn 
+                    DisplayMemberBinding="{Binding Path=Date}" 
                     Header="Date"
                     Width="200" />
 
