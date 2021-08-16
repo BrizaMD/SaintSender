@@ -9,13 +9,16 @@
         Height="450"
         Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="bg.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Canvas 
             x:Name="Header" 
             HorizontalAlignment="Left" 
             Height="60" 
             VerticalAlignment="Top" 
             Width="800" 
-            Background="Crimson" 
+            Background="White" 
             Opacity="0.8"
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
@@ -31,7 +34,13 @@
 
 
         <Grid>
-            <ListView Margin="10" Width="600" Height="200" Name="Inbox">
+            <ListView Margin="10" 
+                      Width="600" 
+                      Height="200" 
+                      Name="Inbox"
+                      Background="White" 
+                        Opacity="0.8"
+                      Visibility="Hidden">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -47,7 +56,7 @@
         </Grid>
 
         <Button Name="LoginState"
-                Margin="30,320,680,60" 
+                Margin="525,33,185,347" 
                 Content="Login" 
                 Cursor="Hand"
                 FontSize="20"

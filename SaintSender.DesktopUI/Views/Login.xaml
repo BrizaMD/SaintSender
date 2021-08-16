@@ -11,6 +11,10 @@
         >
 
     <Grid  Height="350" Width="525">
+        <Grid.Background>
+            <ImageBrush ImageSource="bg.jpg" 
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid Margin="31,0,29,23" Background="White" 
               Height="264" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>

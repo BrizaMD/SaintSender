@@ -56,6 +56,7 @@
                 this.LoginState.Content = "Logout";
                 this.isLoggedIn = true;
                 List<Mail> mails = new InboxService().CreateMails(loginWindow.FullInbox);
+                Inbox.Visibility = Visibility.Visible;
                 Inbox.ItemsSource = mails;
             }
         }
