@@ -1,34 +1,37 @@
 ﻿namespace SaintSender.DesktopUI
 {
+    using System.Net.NetworkInformation;
     using System.Windows;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
-    using System.Net.NetworkInformation;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel _vm;
+        private MainWindowViewModel mainWindowViewModel;
         private bool isLoggedIn;
         private bool isNetworkAvailable;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
             // set DataContext to the ViewModel object
-            this._vm = new MainWindowViewModel();
-            this.DataContext = this._vm;
+            this.mainWindowViewModel = new MainWindowViewModel();
+            this.DataContext = this.mainWindowViewModel;
             this.InitializeComponent();
             this.isLoggedIn = false;
             this.isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
 
-            if (!isNetworkAvailable)
+            if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
-                //load mails from file if authenticated user has saved before
-            }
 
+                // load mails from file if authenticated user has saved before
+            }
             else
             {
                 MessageBox.Show("Yeyy we have internet!");

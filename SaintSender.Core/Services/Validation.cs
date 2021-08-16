@@ -1,23 +1,22 @@
 ﻿namespace SaintSender.Core.Services
 {
     using SaintSender.Core.Interfaces;
-    using System;
     using System.Text.RegularExpressions;
 
     class Validation : Login
     {
-        private const string emailPattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
-        private const string passwordRequirements = @"^[A - Za - z0 - 9_ -] * $";
-        private const int minimumLengthOfPassword = 12;
+        private const string EmailPattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+        private const string PasswordRequirements = @"^[A - Za - z0 - 9_ -] * $";
+        private const int MinimumLengthOfPassword = 12;
 
         public bool ValidateEmail(string email)
         {
-            return !Regex.IsMatch(email, emailPattern) || string.IsNullOrEmpty(email);
+            return !Regex.IsMatch(email, EmailPattern) || string.IsNullOrEmpty(email);
         }
 
         public bool ValidatePassword(string password)
         {
-            return password.Length >= minimumLengthOfPassword || !Regex.IsMatch(password, passwordRequirements);
+            return password.Length >= MinimumLengthOfPassword || !Regex.IsMatch(password, PasswordRequirements);
         }
     }
 }
