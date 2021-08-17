@@ -12,7 +12,7 @@
     using System.Windows.Controls;
     using System.Threading;
     using System.ComponentModel;
-
+    using Validation = Core.Services.Validation;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
