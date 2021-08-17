@@ -9,6 +9,7 @@
     using System;
     using System.Linq;
     using SaintSender.Core.Models;
+    using System.Windows.Media;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -113,6 +114,19 @@
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void StayLoggedInButton(object sender, RoutedEventArgs e)
+        {
+            if (StayLoggedIn.IsChecked is true)
+            {
+                MessageBox.Show("You will stay logged in!");
+                StayLoggedIn.Foreground = Brushes.Red;
+            }
+            else
+            {
+                MessageBox.Show("You will not stay logged in!");
+            }
         }
     }
 }
