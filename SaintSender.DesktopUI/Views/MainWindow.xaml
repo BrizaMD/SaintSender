@@ -32,7 +32,7 @@
                 Background="black"
                 Width="80"
                 Height="40"
-                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,220,56,-220"
+                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,248,56,-243" Click="RefreshButtonClick"
                 />
 
                 <Button
@@ -45,7 +45,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="1,159,56,-159"
+                Canvas.Left="1155" Canvas.Top="8" Margin="1,149,56,-144"
                 />
 
                 <Button
@@ -58,7 +58,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="228,345,-171,-345"
+                Canvas.Left="1155" Canvas.Top="8" Margin="210,348,-153,-343" Click="PreviousButtonClick"
                 />
 
                 <Button
@@ -71,7 +71,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="450,345,-393,-345"
+                Canvas.Left="1155" Canvas.Top="8" Margin="468,348,-411,-343" Click="NextButtonClick"
                 />
 
                 <Button
@@ -87,13 +87,16 @@
                 Canvas.Left="1155" Canvas.Top="8" Margin="1,31,16,-11"
                 />
 
-                <CheckBox Canvas.Left="667" Canvas.Top="10" Margin="10,8,-10,-8">Stay logged-in</CheckBox>
+                <CheckBox Canvas.Left="667" 
+                          Canvas.Top="10" 
+                          Margin="10,8,-10,-8">
+                    Stay logged-in
+                </CheckBox>
             </Grid>
         </Canvas>
         <Grid>
-            <ListView Margin="10" 
+            <ListView Margin="96,110,96,49" 
                       Width="600" 
-                      Height="200" 
                       Name="Inbox"
                       Background="White" 
                         Opacity="0.8"
@@ -118,7 +121,7 @@
                 Cursor="Hand"
                 FontSize="20"
                 FontWeight="Bold"
-                Click="Login">
+                Click="UserAccountActions">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <TextBlock TextDecorations="Underline">  

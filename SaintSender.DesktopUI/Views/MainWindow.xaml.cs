@@ -7,6 +7,7 @@
     using SaintSender.Core.Services;
     using System.Collections.Generic;
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -16,6 +17,9 @@
         private MainWindowViewModel mainWindowViewModel;
         private bool isLoggedIn;
         private bool isNetworkAvailable;
+        private List<Mail> mails;
+        private int pageNumber = 0;
+        private int pageSize = 5;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -41,27 +45,65 @@
             }
         }
 
-        private void Login(object sender, RoutedEventArgs e)
+        private void UserAccountActions(object sender, RoutedEventArgs e)
         {
             if (this.isLoggedIn)
             {
-                this.LoginState.Content = "Login";
-                this.isLoggedIn = false;
-                Inbox.Visibility = Visibility.Hidden;
-                UserControls.Visibility = Visibility.Hidden;
-                MessageBox.Show("You have logged out!");
+                LogOut();
             }
             else
             {
-                Login loginWindow = new Login();
-                loginWindow.ShowDialog();
-                this.LoginState.Content = "Logout";
-                this.isLoggedIn = true;
-                List<Mail> mails = new InboxService().CreateMails(loginWindow.FullInbox);
-                Inbox.Visibility = Visibility.Visible;
-                UserControls.Visibility = Visibility.Visible;
-                Inbox.ItemsSource = mails;
+                Login();
             }
+        }
+
+        private void Login()
+        {
+            Login loginWindow = new Login();
+            loginWindow.ShowDialog();
+            this.LoginState.Content = "Logout";
+            this.isLoggedIn = true;
+            DisplayMails(loginWindow);
+        }
+
+        private void LogOut()
+        {
+            this.LoginState.Content = "Login";
+            this.isLoggedIn = false;
+            Inbox.Visibility = Visibility.Hidden;
+            UserControls.Visibility = Visibility.Hidden;
+            MessageBox.Show("You have logged out!");
+        }
+
+        private void DisplayMails(Login loginWindow)
+        {
+            mails = new InboxService().CreateMails(loginWindow.FullInbox);
+            ScrollInbox();
+            Inbox.Visibility = Visibility.Visible;
+            UserControls.Visibility = Visibility.Visible;
+        }
+
+        private void PreviousButtonClick(object sender, RoutedEventArgs e)
+        {
+            ScrollInbox();
+            this.pageNumber -= 1;
+        }
+
+        private void NextButtonClick(object sender, RoutedEventArgs e)
+        {
+            ScrollInbox();
+            this.pageNumber++;
+        }
+
+        private void ScrollInbox()
+        {
+            this.Inbox.ItemsSource = this.mails.Skip((this.pageNumber - 1) * this.pageSize)
+                                    .Take(this.pageSize);
+        }
+
+        private void RefreshButtonClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
