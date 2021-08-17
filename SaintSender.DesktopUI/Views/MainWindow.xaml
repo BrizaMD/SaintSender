@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI" xmlns:local1="clr-namespace:SaintSender.DesktopUI.Views"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="SainSender"
         Height="450"
@@ -23,28 +24,39 @@
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
             <Grid Name="UserControls" Visibility="Visible">
-                <Button
-                Style="{StaticResource RoundButtonTemplate}"
-                BorderBrush="#fff"
-                Name="Refresh"
-                Content="Refresh"
-                Foreground="white"
-                Background="black"
-                Width="80"
-                Height="40"
-                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,248,56,-243" Click="RefreshButtonClick"
-                />
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+
+
+
 
                 <Button
-                Style="{StaticResource RoundButtonTemplate}"
-                BorderBrush="#fff"
-                Name="SendMail"
-                Content="Send Mail"
-                Foreground="white"
-                Background="black"
-                Width="80"
-                Height="40"
-                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,277,56,-272" Click="SendMail_Click"
+                        Style="{StaticResource RoundButtonTemplate}"
+                        BorderBrush="#fff"
+                        Name="Refresh"
+                        Content="Refresh"
+                        Foreground="white"
+                        Background="black"
+                        Width="80"
+                        Height="40"
+                        FontSize="15" 
+                        Margin="1,248,49,-243" 
+                        Click="RefreshButtonClick"
+                        />
+
+                <Button
+                    Style="{StaticResource RoundButtonTemplate}"
+                    BorderBrush="#fff"
+                    Name="SendMail"
+                    Content="Send Mail"
+                    Foreground="white"
+                    Background="black"
+                    Width="80"
+                    Height="40"
+                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,277,56,-272" Click="SendMail_Click"
                 />
 
                 <Button
@@ -104,8 +116,20 @@
                           Margin="10,8,-10,-8">
                     Stay logged-in
                 </CheckBox>
+
+
+            </Grid>
+            <Grid>
+                <Image Name="Load" 
+                   Visibility="Collapsed" 
+                   Width="450"
+                   Height="350"
+                gif:ImageBehavior.RepeatBehavior="3x"
+                  gif:ImageBehavior.AnimatedSource="circle.gif" Margin="165,58,177,-39" />
             </Grid>
         </Canvas>
+
+
         <Grid>
             <ListView Margin="96,110,96,49" 
                       Width="600" 
