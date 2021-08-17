@@ -8,6 +8,7 @@
     using System.Collections.Generic;
     using System;
     using System.Linq;
+    using SaintSender.Core.Models;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -20,6 +21,7 @@
         private List<Mail> mails;
         private int pageNumber = 0;
         private int pageSize = 5;
+        private User user;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -59,7 +61,7 @@
 
         private void SendMail_Click(object sender, RoutedEventArgs e)
         {
-            SendMail sendMail = new SendMail();
+            SendMail sendMail = new SendMail(user);
             sendMail.ShowDialog();
         }
 
@@ -67,6 +69,7 @@
         {
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
+            user = loginWindow.User;
             this.LoginState.Content = "Logout";
             this.isLoggedIn = true;
             DisplayMails(loginWindow);

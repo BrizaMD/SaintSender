@@ -1,6 +1,7 @@
 ﻿namespace SaintSender.DesktopUI.Views
 {
     using MimeKit;
+    using SaintSender.Core.Models;
     using SaintSender.Core.Services;
     using System.Collections.Generic;
     using System.Windows;
@@ -14,6 +15,8 @@
     // password : unclebob
     public partial class Login : Window
     {
+        public User User { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Login"/> class.
         /// </summary>
@@ -38,6 +41,7 @@
                 this.EmailBox.Focus();
                 this.DialogResult = true;
                 this.Connect(EmailBox.Text, PasswordBox.Password);
+                User = new User(EmailBox.Text, PasswordBox.Password);
             }
         }
 
