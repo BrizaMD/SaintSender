@@ -72,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ScrollInInbox.cs" />
+    <Compile Include="ViewModels\StayLoggedInCheckBox.cs" />
     <Compile Include="Views\SendMail.xaml.cs">
       <DependentUpon>SendMail.xaml</DependentUpon>
     </Compile>

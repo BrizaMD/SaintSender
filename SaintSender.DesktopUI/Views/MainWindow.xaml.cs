@@ -118,14 +118,15 @@
 
         private void StayLoggedInButton(object sender, RoutedEventArgs e)
         {
-            if (StayLoggedIn.IsChecked is true)
+            StayLoggedInCheckBox checkBox = new StayLoggedInCheckBox();
+
+            if (LoggedInCheckBox.IsChecked is true)
             {
-                MessageBox.Show("You will stay logged in!");
-                StayLoggedIn.Foreground = Brushes.Red;
+                checkBox.StayLoggedIn(this.LoggedInCheckBox);
             }
             else
             {
-                MessageBox.Show("You will not stay logged in!");
+                checkBox.LoggedOff(this.LoggedInCheckBox);
             }
         }
     }
