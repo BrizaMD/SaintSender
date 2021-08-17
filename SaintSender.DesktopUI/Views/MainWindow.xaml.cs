@@ -10,6 +10,12 @@
     using System.Net.NetworkInformation;
     using System.Windows;
     using System.Windows.Media;
+    using System;
+    using SaintSender.Core.Models;
+    using System.Windows.Controls;
+    using System.Threading;
+    using System.ComponentModel;
+    using Validation = Core.Services.Validation;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -187,5 +193,14 @@
             checkBox.RemoveUserData();
         }
 
+        private void ListViewDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var mail = (Mail)(sender as ListView).SelectedItem;
+            if (mail != null)
+            {
+                MailDetail detailWindow = new MailDetail(mail, user);
+                detailWindow.ShowDialog();
+            }
+        }
     }
 }

@@ -78,10 +78,20 @@
     <Compile Include="ViewModels\Backup.cs" />
     <Compile Include="ViewModels\ScrollInInbox.cs" />
     <Compile Include="ViewModels\StayLoggedInCheckBox.cs" />
+    <Compile Include="Views\MailDetail.xaml.cs">
+      <DependentUpon>MailDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reply.xaml.cs">
+      <DependentUpon>Reply.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SendMail.xaml.cs">
       <DependentUpon>SendMail.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,6 +111,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Reply.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SendMail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

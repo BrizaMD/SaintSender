@@ -22,6 +22,7 @@ namespace SaintSender.Core.Services
                     Subject = item.Subject,
                     From = item.From.ToString(),
                     Date = item.Date.DateTime,
+                    Body = item.TextBody,
                 });
             }
 
