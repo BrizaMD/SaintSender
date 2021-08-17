@@ -32,7 +32,7 @@
                 Background="black"
                 Width="80"
                 Height="40"
-                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,248,56,-243"
+                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,248,56,-243" Click="RefreshButtonClick"
                 />
 
                 <Button

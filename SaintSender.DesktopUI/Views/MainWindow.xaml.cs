@@ -100,5 +100,10 @@
             this.Inbox.ItemsSource = this.mails.Skip((this.pageNumber - 1) * this.pageSize)
                                     .Take(this.pageSize);
         }
+
+        private void RefreshButtonClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
