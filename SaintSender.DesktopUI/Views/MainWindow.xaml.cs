@@ -9,6 +9,8 @@
     using System;
     using System.Linq;
     using SaintSender.Core.Models;
+    using System.Threading;
+    using System.ComponentModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -22,6 +24,7 @@
         private int pageNumber = 0;
         private int pageSize = 5;
         private User user;
+        BackgroundWorker worker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -72,6 +75,8 @@
             user = loginWindow.User;
             this.LoginState.Content = "Logout";
             this.isLoggedIn = true;
+            pageNumber = 0;
+            pageSize = 5;
             DisplayMails(loginWindow);
         }
 
@@ -112,7 +117,30 @@
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Load.Visibility = Visibility.Visible;
+            Inbox.IsEnabled = false;
+
+            pageNumber = 0;
+            pageSize = 5;
+
+            Validation tryLogin = new Validation();
+            mails = new InboxService()
+                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+
+
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+
+            ScrollInbox();
+
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Load.Visibility = Visibility.Collapsed;
+            Inbox.IsEnabled = true;
         }
     }
 }
