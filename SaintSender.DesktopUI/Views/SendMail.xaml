@@ -1,12 +1,70 @@
-﻿<Window x:Class="SaintSender.DesktopUI.Views.SendMail"
+﻿<Window x:Class="HandsOnLab1.ServiceAgents.Window1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
+        xmlns:local="clr-namespace:HandsOnLab1.ServiceAgents"
         mc:Ignorable="d"
-        Title="SendMail" Height="450" Width="800">
+        Title="Send Mail" Height="450" Width="800">
     <Grid>
+        <Grid Margin="27,0,33,20" Background="White" 
+              Height="264" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="434*"/>
+                <ColumnDefinition Width="165*"/>
+                <ColumnDefinition Width="133*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="252*" />
+            </Grid.RowDefinitions>
+            <TextBlock Height="20" 
+                       HorizontalAlignment="Left" 
+                       Margin="67,0,0,0" 
+                       x:Name ="errormessage" 
+                       VerticalAlignment="Top" 
+                       Width="247"  
+                       OpacityMask="Crimson" 
+                       Foreground="#FFE5572C" />
+            <TextBlock 
+                Height="23" 
+                HorizontalAlignment="Right" 
+                Margin="-1,-99,325,0" 
+                Name="ToLabel" 
+                Text="To" 
+                VerticalAlignment="Top" 
+                Width="110" />
 
+            <TextBlock Height="23" 
+                       HorizontalAlignment="Left" 
+                       Margin="-1,-55,0,0"
+                       Name="SubjectLabel" 
+                       Text="Subject" 
+                       VerticalAlignment="Top" 
+                       Width="110" />
+
+
+            <TextBox Height="23" 
+                     HorizontalAlignment="Left" 
+                     Margin="67,-99,0,0"
+                     Name="EmailBox"
+                     VerticalAlignment="Top" 
+                     Width="659" Grid.ColumnSpan="3" />
+
+
+
+            <TextBox Height="23" 
+                     HorizontalAlignment="Left" 
+                     Margin="67,-55,0,0"
+                     Name="Subject"
+                     VerticalAlignment="Top" 
+                     Width="659" Grid.ColumnSpan="3" />
+
+            <TextBox Height="268" 
+                     HorizontalAlignment="Left" 
+                     Margin="67,-14,0,0"
+                     Name="Mail"
+                     VerticalAlignment="Top" 
+                     Width="659" Grid.ColumnSpan="3" />
+        </Grid>
     </Grid>
 </Window>
