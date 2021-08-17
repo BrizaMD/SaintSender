@@ -72,10 +72,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\MailDetail.xaml.cs">
+      <DependentUpon>MailDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SendMail.xaml.cs">
       <DependentUpon>SendMail.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
