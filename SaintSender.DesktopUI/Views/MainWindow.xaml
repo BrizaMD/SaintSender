@@ -22,7 +22,7 @@
             Opacity="0.8"
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
-            <Grid Name="UserControls" Visibility="Hidden">
+            <Grid Name="UserControls" Visibility="Visible">
                 <Button
                 Style="{StaticResource RoundButtonTemplate}"
                 BorderBrush="#fff"
@@ -33,6 +33,18 @@
                 Width="80"
                 Height="40"
                 FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,248,56,-243" Click="RefreshButtonClick"
+                />
+
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="SendMail"
+                Content="Send Mail"
+                Foreground="white"
+                Background="black"
+                Width="80"
+                Height="40"
+                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,277,56,-272" Click="SendMail_Click"
                 />
 
                 <Button

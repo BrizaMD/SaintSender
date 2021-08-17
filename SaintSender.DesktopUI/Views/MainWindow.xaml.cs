@@ -57,6 +57,12 @@
             }
         }
 
+
+        private void SendMail_Click(object sender, RoutedEventArgs e)
+        {
+            SendMail sendMail = new SendMail();
+            sendMail.ShowDialog();
+
         private void Login()
         {
             Login loginWindow = new Login();

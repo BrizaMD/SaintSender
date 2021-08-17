@@ -56,8 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IEmailSender.cs" />
     <Compile Include="Interfaces\IInbox.cs" />
     <Compile Include="Interfaces\ILogin.cs" />
+    <Compile Include="Models\EmailConfiguration.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Services\EmailSender.cs" />
     <Compile Include="Services\InboxService.cs" />
     <Compile Include="Services\Mail.cs" />
     <Compile Include="Services\Validation.cs" />
