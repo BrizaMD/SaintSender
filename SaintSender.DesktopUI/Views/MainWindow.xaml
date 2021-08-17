@@ -23,7 +23,7 @@
             Opacity="0.8"
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
-            <Grid Name="UserControls" Visibility="Visible">
+            <Grid Name="UserControls" Visibility="Hidden">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="130*"/>

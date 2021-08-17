@@ -153,7 +153,7 @@
 
             if (LoggedInCheckBox.IsChecked is true)
             {
-                checkBox.StayLoggedIn(this.LoggedInCheckBox);
+                checkBox.StayLoggedIn(this.LoggedInCheckBox, user);
             }
             else
             {
