@@ -9,8 +9,10 @@
     using System;
     using System.Linq;
     using SaintSender.Core.Models;
+    using System.Windows.Controls;
     using System.Threading;
     using System.ComponentModel;
+
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -141,6 +143,16 @@
         {
             Load.Visibility = Visibility.Collapsed;
             Inbox.IsEnabled = true;
+        }
+
+        private void ListViewDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var mail = (Mail)(sender as ListView).SelectedItem;
+            if (mail != null)
+            {
+                MailDetail detailWindow = new MailDetail(mail, user);
+                detailWindow.ShowDialog();
+            }
         }
     }
 }

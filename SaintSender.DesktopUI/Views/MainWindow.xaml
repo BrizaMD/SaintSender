@@ -136,7 +136,8 @@
                       Name="Inbox"
                       Background="White" 
                         Opacity="0.8"
-                      Visibility="Hidden">
+                      Visibility="Hidden"
+                      MouseDoubleClick="ListViewDoubleClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
