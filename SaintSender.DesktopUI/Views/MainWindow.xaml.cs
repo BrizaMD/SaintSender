@@ -51,6 +51,13 @@
             else
             {
                 MessageBox.Show("Yeyy we have internet!");
+                StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
+                if (stayLoggedInCheckBox.IsUserSaved())
+                {
+                    this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
+                    AutomaticLogin();
+                }
+
             }
         }
 
@@ -82,6 +89,19 @@
             pageNumber = 0;
             pageSize = 5;
             DisplayMails(loginWindow);
+        }
+
+        private void AutomaticLogin()
+        {
+            Validation tryLogin = new Validation();
+            mails = new InboxService()
+                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+            pageNumber = 0;
+            pageSize = 5;
+            this.LoginState.Content = "Logout";
+            ScrollInbox();
+            Inbox.Visibility = Visibility.Visible;
+            UserControls.Visibility = Visibility.Visible;
         }
 
         private void LogOut()

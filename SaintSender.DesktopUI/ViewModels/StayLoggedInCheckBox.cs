@@ -17,64 +17,48 @@
             MessageBox.Show("You will stay logged in!");
             loggedInCheckBox.Foreground = Brushes.Red;
 
-            SaveData(user);
+            SaveLoggedInUser(user);
         }
 
-        private void SaveData(User user)
+        private void SaveLoggedInUser(User user)
         {
-            //System.Xml.Serialization.XmlSerializer userSerializer =
-            //    new System.Xml.Serialization.XmlSerializer(user.GetType());
-            //Stream stream = new FileStream("users.xml",
-            //                                FileMode.Create,
-            //                                FileAccess.Write,
-            //                                FileShare.None);
-            //userSerializer.Serialize(stream, user);
-            //stream.Close();
-            if (File.Exists("users.xml") == false)
+            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+            xmlWriterSettings.Indent = true;
+            xmlWriterSettings.NewLineOnAttributes = true;
+            using (XmlWriter xmlWriter = XmlWriter.Create("loggedInUser.xml", xmlWriterSettings))
             {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineOnAttributes = true;
-                using (XmlWriter xmlWriter = XmlWriter.Create("users.xml", xmlWriterSettings))
-                {
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteStartElement("Users");
-                    xmlWriter.WriteStartElement("User");
-                    xmlWriter.WriteElementString("Email", user.EmailAdress);
-                    xmlWriter.WriteElementString("Password", user.Password);
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndDocument();
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
-                }
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("Users");
+                xmlWriter.WriteStartElement("User");
+                xmlWriter.WriteElementString("Email", user.EmailAdress);
+                xmlWriter.WriteElementString("Password", user.Password);
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                xmlWriter.Close();
             }
-            else
-            {
-                XDocument xDocument = XDocument.Load("users.xml");
-                XElement root = xDocument.Element("Users");
-                IEnumerable<XElement> rows = root.Descendants("User");
-                XElement firstRow = rows.First();
-                firstRow.AddBeforeSelf(
-                   new XElement("User",
-                   new XElement("Email", user.EmailAdress),
-                   new XElement("Password", user.Password)));
-                xDocument.Save("users.xml");
-            }
-
-
         }
 
         public void LoggedOff(CheckBox loggedInCheckBox, User user)
         {
             MessageBox.Show("You will not stay logged in!");
             loggedInCheckBox.Foreground = Brushes.Green;
-            DeleteUser();
+
         }
 
-        private void DeleteUser()
+        public bool IsUserSaved()
         {
+            return File.Exists("loggedInUser.xml");
+        }
 
+        public User ReadUserDataFromFile()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("loggedInUser.xml");
+            string email = doc.DocumentElement.FirstChild.SelectSingleNode("Email").InnerText;
+            string password = doc.DocumentElement.FirstChild.SelectSingleNode("Password").InnerText;
+            return new User(email, password);
         }
     }
 }
