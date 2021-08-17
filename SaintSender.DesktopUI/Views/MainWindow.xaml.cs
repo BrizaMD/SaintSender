@@ -157,7 +157,7 @@
             }
             else
             {
-                checkBox.LoggedOff(this.LoggedInCheckBox);
+                checkBox.LoggedOff(this.LoggedInCheckBox, user);
             }
         }
     }
