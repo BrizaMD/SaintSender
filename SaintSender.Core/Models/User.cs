@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaintSender.Core.Models
 {
+    [Serializable]
     public class User
     {
 
@@ -14,6 +15,11 @@ namespace SaintSender.Core.Models
             EmailAdress = emailAdress;
             Password = password;
         }
+
+        public User()
+        {
+        }
+
 
         public string EmailAdress { get; set; }
         public string Password { get; set; }

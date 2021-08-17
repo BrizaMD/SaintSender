@@ -1,13 +1,16 @@
 ﻿namespace SaintSender.DesktopUI
 {
-    using System.Net.NetworkInformation;
-    using System.Windows;
+    using SaintSender.Core.Models;
+    using SaintSender.Core.Services;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
-    using SaintSender.Core.Services;
     using System.Collections.Generic;
-    using System;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Net.NetworkInformation;
+    using System.Windows;
+    using System.Windows.Media;
+    using System;
     using SaintSender.Core.Models;
     using System.Windows.Controls;
     using System.Threading;
@@ -26,7 +29,8 @@
         private int pageNumber = 0;
         private int pageSize = 5;
         private User user;
-        BackgroundWorker worker;
+        private ScrollInInbox scroll;
+        private BackgroundWorker worker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -49,6 +53,13 @@
             else
             {
                 MessageBox.Show("Yeyy we have internet!");
+                StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
+                if (stayLoggedInCheckBox.IsUserSaved())
+                {
+                    this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
+                    AutomaticLogin();
+                }
+
             }
         }
 
@@ -80,6 +91,22 @@
             pageNumber = 0;
             pageSize = 5;
             DisplayMails(loginWindow);
+        }
+
+        private void AutomaticLogin()
+        {
+            Validation tryLogin = new Validation();
+            mails = new InboxService()
+                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+            pageNumber = 0;
+            pageSize = 5;
+            this.isLoggedIn = true;
+            this.LoginState.Content = "Logout";
+            LoggedInCheckBox.Foreground = Brushes.Green;
+            LoggedInCheckBox.IsChecked = true;
+            ScrollInbox();
+            Inbox.Visibility = Visibility.Visible;
+            UserControls.Visibility = Visibility.Visible;
         }
 
         private void LogOut()
@@ -143,6 +170,27 @@
         {
             Load.Visibility = Visibility.Collapsed;
             Inbox.IsEnabled = true;
+        }
+
+        private void StayLoggedInButton(object sender, RoutedEventArgs e)
+        {
+            StayLoggedInCheckBox checkBox = new StayLoggedInCheckBox();
+
+            if (LoggedInCheckBox.IsChecked is true)
+            {
+                checkBox.StayLoggedIn(this.LoggedInCheckBox, user);
+            }
+            else
+            {
+                checkBox.LoggedOff(this.LoggedInCheckBox, user);
+            }
+        }
+
+        private void ForgetMe_Click(object sender, RoutedEventArgs e)
+        {
+            StayLoggedInCheckBox checkBox = new StayLoggedInCheckBox();
+            checkBox.LoggedOff(LoggedInCheckBox, user);
+            checkBox.RemoveUserData();
         }
 
         private void ListViewDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
