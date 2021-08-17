@@ -35,6 +35,7 @@ namespace SaintSender.DesktopUI.Views
 
             _emailSender.SendEmail(message);
             this.Close();
+
         }
     }
 }
