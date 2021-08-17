@@ -112,7 +112,9 @@
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            pageNumber = 0;
+            pageSize = 5;
+            ScrollInbox();
         }
     }
 }

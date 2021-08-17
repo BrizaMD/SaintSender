@@ -9,8 +9,7 @@ namespace SaintSender.Core.Services
     {
         private List<Mail> SortMail(List<Mail> mails)
         {
-            var result = mails.OrderByDescending(mail => mail.Date).ToList();
-            return (List<Mail>)result;
+            return mails.OrderByDescending(mail => mail.Date).ToList() as List<Mail>;
         }
 
         public List<Mail> CreateMails(List<MimeKit.MimeMessage> inbox)
