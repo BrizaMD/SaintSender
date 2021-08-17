@@ -1,16 +1,7 @@
-﻿using System;
+﻿using SaintSender.Core.Models;
+using SaintSender.Core.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SaintSender.DesktopUI.Views
 {
@@ -21,7 +12,29 @@ namespace SaintSender.DesktopUI.Views
     {
         public SendMail()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+        }
+
+        public void SendButton(object sender, RoutedEventArgs e)
+        {
+            // IEnumerable<string> allEmails = new List<string>() { "get emails here" };
+            
+
+            var message = new Message(EmailBox.Text, Subject.Text, Mail.Text);
+
+            var emailConfiguration = new EmailConfiguration()
+            {
+                SMTPFrom = "cc.dreamteamdeluxe@gmail.com",    //get our email
+                SMTPHost = "smtp.gmail.com",
+                SMTPLogin = "cc.dreamteamdeluxe@gmail.com",
+                SMTPPassword = "unclebob",
+                SMTPPort = 465,
+            };
+
+            var _emailSender = new EmailSender(emailConfiguration);
+
+            _emailSender.SendEmail(message);
+            this.Close();
         }
     }
 }
