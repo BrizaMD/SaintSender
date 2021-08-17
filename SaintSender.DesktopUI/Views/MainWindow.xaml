@@ -23,16 +23,73 @@
             Margin="0,24,0,0" 
             Grid.ColumnSpan="2">
             <Grid Name="UserControls" Visibility="Hidden">
-                <Button Canvas.Left="721" Canvas.Top="30" Margin="12,117,-12,-117">Refresh</Button>
-                <Button Canvas.Left="674" Canvas.Top="30" RenderTransformOrigin="1.607,0.328" Margin="131,117,-131,-117">Backup</Button>
-                <Button Canvas.Top="40" Margin="12,69,-12,-69">Previous</Button>
-                <Button Canvas.Left="65" Canvas.Top="40" Margin="131,69,-131,-69">Next</Button>
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="Refresh"
+                Content="Refresh"
+                Foreground="white"
+                Background="black"
+                Width="80"
+                Height="40"
+                FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,220,56,-220"
+                />
+
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="BackUp"
+                Content="Backup"
+                Foreground="white"
+                Background="black"
+                Width="80"
+                Height="40"
+                FontSize="15" 
+                Canvas.Left="1155" Canvas.Top="8" Margin="1,159,56,-159"
+                />
+
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="Previous"
+                Content="Previous"
+                Foreground="white"
+                Background="black"
+                Width="80"
+                Height="40"
+                FontSize="15" 
+                Canvas.Left="1155" Canvas.Top="8" Margin="228,345,-171,-345"
+                />
+
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="Next"
+                Content="Next"
+                Foreground="white"
+                Background="black"
+                Width="80"
+                Height="40"
+                FontSize="15" 
+                Canvas.Left="1155" Canvas.Top="8" Margin="450,345,-393,-345"
+                />
+
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="ForgetMe"
+                Content="Forget Me"
+                Foreground="white"
+                Background="black"
+                Width="120"
+                Height="25"
+                FontSize="15" 
+                Canvas.Left="1155" Canvas.Top="8" Margin="1,31,16,-11"
+                />
+
                 <CheckBox Canvas.Left="667" Canvas.Top="10" Margin="10,8,-10,-8">Stay logged-in</CheckBox>
-                <Button Canvas.Top="35" Canvas.Left="380" Margin="12,33,-12,-33">Forget Me</Button>
             </Grid>
         </Canvas>
-
-
         <Grid>
             <ListView Margin="10" 
                       Width="600" 
