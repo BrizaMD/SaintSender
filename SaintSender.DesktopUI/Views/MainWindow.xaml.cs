@@ -121,18 +121,9 @@
             var mail = (Mail)(sender as ListView).SelectedItem;
             if (mail != null)
             {
-                // use the item here and pass to the new window
-                // NewModal s = new NewModal(Email)item);
-                MailDetail detailWindow = new MailDetail(mail);
+                MailDetail detailWindow = new MailDetail(mail, user);
                 detailWindow.ShowDialog();
-                
-                //MessageBox.Show($"Ayyy a double click from, {mail.ToString()}," +
-                //                $" sent from: {mail.From}" +
-                //                $" and they said: {mail.Subject}," +
-                //                $" on this day: {mail.Date}");
             }
-
-            
         }
     }
 }

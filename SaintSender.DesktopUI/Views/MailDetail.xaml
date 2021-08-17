@@ -33,6 +33,6 @@
         <Label Content="Body:" Canvas.Left="10" Canvas.Top="100" Width="50" Height="25"/>
 
         <Button Content="Close" Canvas.Left="10" Canvas.Top="298" Width="75" Click="CloseButton"/>
-        <Button Content="Reply" Canvas.Left="291" Canvas.Top="298" Width="75"/>
+        <Button Content="Reply" Canvas.Left="291" Canvas.Top="298" Width="75" Click="ReplyButton"/>
     </Canvas>
 </Window>
