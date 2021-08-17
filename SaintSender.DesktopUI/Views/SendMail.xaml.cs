@@ -21,7 +21,7 @@ namespace SaintSender.DesktopUI.Views
     {
         public SendMail()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
