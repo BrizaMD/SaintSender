@@ -42,9 +42,8 @@
 
         public void LoggedOff(CheckBox loggedInCheckBox, User user)
         {
-            MessageBox.Show("You will not stay logged in!");
             loggedInCheckBox.Foreground = Brushes.Green;
-
+            loggedInCheckBox.IsChecked = false;
         }
 
         public bool IsUserSaved()
@@ -59,6 +58,11 @@
             string email = doc.DocumentElement.FirstChild.SelectSingleNode("Email").InnerText;
             string password = doc.DocumentElement.FirstChild.SelectSingleNode("Password").InnerText;
             return new User(email, password);
+        }
+
+        public void RemoveUserData()
+        {
+            File.Delete("loggedInUser.xml");
         }
     }
 }

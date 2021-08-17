@@ -108,18 +108,17 @@
                 Width="120"
                 Height="25"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="1,31,16,-11"
+                Canvas.Left="1155" Canvas.Top="8" Margin="1,31,16,-11" Click="ForgetMe_Click"
                 />
 
                 <CheckBox Canvas.Left="667" 
                           Canvas.Top="10" 
-                          Margin="10,8,-10,-8" 
+                          Margin="10,8,-10,14" 
                           Checked="StayLoggedInButton"
-                          Unchecked="StayLoggedInButton"
                           Name="LoggedInCheckBox"
                           IsChecked="False"
                           Foreground="Green"
-                          FontWeight="Bold">
+                          FontWeight="Bold" Grid.ColumnSpan="2">
                     Stay logged-in
                 </CheckBox>
 

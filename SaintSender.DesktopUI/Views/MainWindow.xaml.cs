@@ -1,19 +1,15 @@
 ﻿namespace SaintSender.DesktopUI
 {
-    using System.Net.NetworkInformation;
-    using System.Windows;
+    using SaintSender.Core.Models;
+    using SaintSender.Core.Services;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
-    using SaintSender.Core.Services;
     using System.Collections.Generic;
-    using System;
+    using System.ComponentModel;
     using System.Linq;
-    using SaintSender.Core.Models;
-    using System.Threading;
-    using System.ComponentModel;
+    using System.Net.NetworkInformation;
+    using System.Windows;
     using System.Windows.Media;
-    using System.Threading;
-    using System.ComponentModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -98,7 +94,10 @@
                     .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
             pageNumber = 0;
             pageSize = 5;
+            this.isLoggedIn = true;
             this.LoginState.Content = "Logout";
+            LoggedInCheckBox.Foreground = Brushes.Green;
+            LoggedInCheckBox.IsChecked = true;
             ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
@@ -180,5 +179,13 @@
                 checkBox.LoggedOff(this.LoggedInCheckBox, user);
             }
         }
+
+        private void ForgetMe_Click(object sender, RoutedEventArgs e)
+        {
+            StayLoggedInCheckBox checkBox = new StayLoggedInCheckBox();
+            checkBox.LoggedOff(LoggedInCheckBox, user);
+            checkBox.RemoveUserData();
+        }
+
     }
 }
