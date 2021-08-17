@@ -114,6 +114,9 @@
         {
             pageNumber = 0;
             pageSize = 5;
+            Validation tryLogin = new Validation();
+            mails = new InboxService()
+                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
             ScrollInbox();
         }
     }
