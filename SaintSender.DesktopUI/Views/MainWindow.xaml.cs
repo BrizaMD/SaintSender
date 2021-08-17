@@ -9,6 +9,7 @@
     using System;
     using System.Linq;
     using SaintSender.Core.Models;
+    using System.Windows.Controls;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -113,6 +114,23 @@
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void ListViewDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var item = (Mail)(sender as ListView).SelectedItem;
+            if (item != null)
+            {
+                // use the item here and pass to the new window
+                // NewModal s = new NewModal(Email)item);
+                
+                MessageBox.Show($"Ayyy a double click from, {item.ToString()}," +
+                                $" sent from: {item.From}" +
+                                $" and they said: {item.Subject}," +
+                                $" on this day: {item.Date}");
+            }
+
+            
         }
     }
 }
