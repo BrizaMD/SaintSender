@@ -26,7 +26,8 @@ namespace SaintSender.Core.Services
             {
                 var emailMessage = new MimeMessage();
                 emailMessage.From.Add(new MailboxAddress(_emailConfig.SMTPFrom));
-                // emailMessage.To.AddRange(message.To);
+            // emailMessage.To.AddRange(message.To);
+                emailMessage.To.Add(new MailboxAddress(message.To));
                 emailMessage.Subject = message.Subject;
                 emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
 
