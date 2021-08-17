@@ -57,11 +57,11 @@
             }
         }
 
-
         private void SendMail_Click(object sender, RoutedEventArgs e)
         {
             SendMail sendMail = new SendMail();
             sendMail.ShowDialog();
+        }
 
         private void Login()
         {
@@ -104,7 +104,7 @@
         private void ScrollInbox()
         {
             this.Inbox.ItemsSource = this.mails.Skip((this.pageNumber - 1) * this.pageSize)
-                                    .Take(this.pageSize);
+                                                .Take(this.pageSize);
         }
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
