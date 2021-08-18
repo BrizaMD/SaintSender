@@ -5,34 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="MailDetail" Height="450" Width="800">
+        Title="MailDetail" Height="400" Width="600"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize">
+
     <Canvas 
             x:Name="Header" 
             HorizontalAlignment="Left" 
-            Height="269" 
+            Height="400" 
             VerticalAlignment="Top" 
-            Width="790" 
-            Background="White" 
-            Opacity="0.8"
-            Margin="0,24,0,0" 
-            Grid.ColumnSpan="2">
+            Width="600" 
+            Opacity="0.8" 
+            Grid.ColumnSpan="2" Margin="0,0,-6,0">
+        <Canvas.Background>
+            <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
+        </Canvas.Background>
         <Grid Name="UserControls" Visibility="Visible"/>
-        <TextBlock Name="Sender" Height="25" Canvas.Left="65" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="10" Width="301"/>
-        <TextBlock Name="Subject" Height="25" Canvas.Left="65" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="40" Width="301"/>
-        <TextBlock Name="Date" Height="25" Canvas.Left="65" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="70" Width="301"/>
-        <ScrollViewer Canvas.Left="65" Canvas.Top="100"  Height="150">
-            <TextBlock Name="Body" TextWrapping="Wrap" Text="TextBlock" Width="401"
+        <TextBlock FontSize="15" FontWeight="Bold" Name="Sender" Height="25" Canvas.Left="98" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="18" Width="301"/>
+        <TextBlock FontSize="15" FontWeight="Bold" Name="Subject" Height="25" Canvas.Left="98" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="48" Width="301"/>
+        <TextBlock FontSize="15" FontWeight="Bold" Name="Date" Height="25" Canvas.Left="98" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="78" Width="301"/>
+        <ScrollViewer Canvas.Left="100" Canvas.Top="100"  Height="150">
+            <TextBlock FontSize="15" FontWeight="Bold" Name="Body" TextWrapping="Wrap" Text="TextBlock" Width="391"
                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                        ScrollViewer.VerticalScrollBarVisibility="Auto"
-                       ScrollViewer.CanContentScroll="True"/>
+                       ScrollViewer.CanContentScroll="True" Height="140"/>
         </ScrollViewer>
 
-        <Label Content="Sender:" Canvas.Left="10" Canvas.Top="10" Width="50" Height="25"/>
-        <Label Content="Subject:" Canvas.Left="10" Canvas.Top="40" Width="50" Height="25"/>
-        <Label Content="Date:" Canvas.Left="10" Canvas.Top="70" Width="50" Height="25"/>
-        <Label Content="Body:" Canvas.Left="10" Canvas.Top="100" Width="50" Height="25"/>
+        <Label FontStyle="Oblique" FontSize="15" FontWeight="Bold" Content="Sender:" Canvas.Left="10" Canvas.Top="10" Width="75" Height="30"/>
+        <Label FontStyle="Oblique" FontSize="15" FontWeight="Bold" Content="Subject:" Canvas.Left="10" Canvas.Top="40" Width="68" Height="33"/>
+        <Label FontStyle="Oblique" FontSize="15" FontWeight="Bold" Content="Date:" Canvas.Left="10" Canvas.Top="70" Width="68" Height="30"/>
+        <Label FontStyle="Oblique" FontSize="15" FontWeight="Bold" Content="Body:" Canvas.Left="10" Canvas.Top="100" Width="68" Height="28"/>
 
-        <Button Content="Close" Canvas.Left="10" Canvas.Top="298" Width="75" Click="CloseButton"/>
-        <Button Content="Reply" Canvas.Left="291" Canvas.Top="298" Width="75" Click="ReplyButton"/>
+        <Button
+            Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Foreground="white"
+                Background="black"
+                Height="40"
+                FontSize="15" 
+            Content="Close" Canvas.Left="3" Canvas.Top="298" Width="75" Click="CloseButton"/>
+
+        <Button Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Foreground="white"
+                Background="black"
+                Height="40"
+                FontSize="15"  Content="Reply" Canvas.Left="515" Canvas.Top="298" Width="75" Click="ReplyButton"/>
     </Canvas>
 </Window>

@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="Send Mail" Height="450" Width="800">
+        Title="Send Mail" Height="450" Width="800"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize">
     <Grid>
-        <Grid Margin="27,0,33,20" Background="White" 
+        <Grid.Background>
+            <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Margin="27,0,33,20" 
               Height="264" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="434*"/>
@@ -26,21 +31,26 @@
                        OpacityMask="Crimson" 
                        Foreground="#FFE5572C" />
             <TextBlock 
+                FontSize="20"
+                FontWeight="Bold"
                 Height="23" 
                 HorizontalAlignment="Right" 
-                Margin="-1,-99,325,0" 
+                Margin="0,-99,291,0" 
                 Name="ToLabel" 
                 Text="To" 
                 VerticalAlignment="Top" 
                 Width="110" />
 
-            <TextBlock Height="23" 
+            <TextBlock 
+                FontSize="20"
+                Height="23" 
                        HorizontalAlignment="Left" 
-                       Margin="-1,-55,0,0"
+                       Margin="-14,-55,0,0"
                        Name="SubjectLabel" 
                        Text="Subject" 
                        VerticalAlignment="Top" 
-                       Width="110" />
+                       Width="110"
+                       FontWeight="Bold"/>
 
 
             <TextBox Height="23" 
@@ -66,12 +76,25 @@
                      VerticalAlignment="Top" 
                      Width="659" Grid.ColumnSpan="3" />
         </Grid>
-        <Button Content="Send"
+        <Button 
+             Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Foreground="white"
+                Background="black"
+            FontSize="15"
+            Content="Send"
                 HorizontalAlignment="Left"
                 Margin="684,389,0,0"
                 VerticalAlignment="Top"
-                Width="75" Click="SendButton"/>
-        <Button Content="Cancel"
+                Width="75" Click="SendButton" Height="30"/>
+        <Button 
+            Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Foreground="white"
+                Background="black"
+                Height="30"
+                FontSize="15" 
+            Content="Cancel"
                 HorizontalAlignment="Left"
                 Margin="583,389,0,0"
                 VerticalAlignment="Top"

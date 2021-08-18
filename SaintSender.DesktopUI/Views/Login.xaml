@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="Login" Height="387" 
-        Width="528" 
+        Title="Login" Height="400" 
+        Width="600" 
         Background="Black"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize"
         >
 
-    <Grid  Height="350" Width="525">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="bg.jpg" 
-                        Stretch="UniformToFill"/>
-        </Grid.Background>-->
-        <Grid Margin="31,0,29,23" Background="White" 
-              Height="264" VerticalAlignment="Bottom">
+    <Grid  Height="400" Width="600">
+        <Grid.Background>
+            <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Margin="34,0,26,69" Background="White" 
+              Height="95" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="252*" />
             </Grid.RowDefinitions>
@@ -65,11 +66,12 @@
             <Button Content="Login" 
                     Height="23" 
                     HorizontalAlignment="Right" 
-                    Margin="0,204,60,0" 
+                    Margin="0,28,32,0" 
                     Name="buttonSave" 
                     VerticalAlignment="Top" 
                     Width="70"
                     Cursor="Hand" Click="LoginButton"
+                    FontSize="20"
                     >
 
                 <Button.Template>
