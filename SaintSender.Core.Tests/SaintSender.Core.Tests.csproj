@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BackUpServiceTest.cs" />
     <Compile Include="GreetServiceTests.cs" />
+    <Compile Include="InboxServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
