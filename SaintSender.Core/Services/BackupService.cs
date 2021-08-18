@@ -1,4 +1,5 @@
-﻿using SaintSender.Core.Models;
+﻿using SaintSender.Core.Interfaces;
+using SaintSender.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Xml.Linq;
 
 namespace SaintSender.Core.Services
 {
-    public class BackupService
+    public class BackupService : IBackUp
     {
         public bool SaveData(User user, List<Mail> mails)
         {
