@@ -146,30 +146,15 @@
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
-            Load.Visibility = Visibility.Visible;
             Inbox.IsEnabled = false;
-
             pageNumber = 0;
             pageSize = 5;
-
             Validation tryLogin = new Validation();
             mails = new InboxService()
                     .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
-
-
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-
             ScrollInbox();
-
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
-        }
-
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Load.Visibility = Visibility.Collapsed;
             Inbox.IsEnabled = true;
+
         }
 
         private void StayLoggedInButton(object sender, RoutedEventArgs e)

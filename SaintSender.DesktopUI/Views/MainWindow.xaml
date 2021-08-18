@@ -124,14 +124,7 @@
 
 
             </Grid>
-            <Grid>
-                <Image Name="Load" 
-                   Visibility="Collapsed" 
-                   Width="450"
-                   Height="350"
-                gif:ImageBehavior.RepeatBehavior="3x"
-                  gif:ImageBehavior.AnimatedSource="circle.gif" Margin="165,58,177,-39" />
-            </Grid>
+
         </Canvas>
 
 
