@@ -156,6 +156,11 @@
             this.isLoggedIn = false;
             Inbox.Visibility = Visibility.Hidden;
             UserControls.Visibility = Visibility.Hidden;
+            Send.Visibility = Visibility.Collapsed;
+            Refresh.Visibility = Visibility.Collapsed;
+            Save.Visibility = Visibility.Collapsed;
+            Prev.Visibility = Visibility.Collapsed;
+            Next.Visibility = Visibility.Collapsed;
             MessageBox.Show("You have logged out!");
         }
 
@@ -176,6 +181,11 @@
             this.ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
+            Send.Visibility = Visibility.Visible;
+            Refresh.Visibility = Visibility.Visible;
+            Save.Visibility = Visibility.Visible;
+            Prev.Visibility = Visibility.Visible;
+            Next.Visibility = Visibility.Visible;
         }
 
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
