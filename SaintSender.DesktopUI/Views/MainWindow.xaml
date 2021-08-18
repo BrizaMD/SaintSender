@@ -43,7 +43,7 @@
                         Width="80"
                         Height="40"
                         FontSize="15" 
-                        Margin="1,248,49,-243" 
+                        Margin="1,208,56,-203" 
                         Click="RefreshButtonClick"
                         />
 
@@ -56,7 +56,7 @@
                     Background="black"
                     Width="80"
                     Height="40"
-                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,277,56,-272" Click="SendMail_Click"
+                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,265,56,-260" Click="SendMail_Click"
                 />
 
                 <Button

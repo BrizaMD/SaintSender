@@ -16,6 +16,7 @@
     using System.Threading;
     using System.ComponentModel;
     using Validation = Core.Services.Validation;
+    using System.Windows.Controls.Primitives;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -47,19 +48,19 @@
             if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
+                
 
                 // load mails from file if authenticated user has saved before
             }
             else
             {
-                MessageBox.Show("Yeyy we have internet!");
+                
                 StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
                 if (stayLoggedInCheckBox.IsUserSaved())
                 {
                     this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
                     AutomaticLogin();
                 }
-
             }
         }
 

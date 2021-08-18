@@ -18,5 +18,10 @@ namespace SaintSender.DesktopUI.ViewModels
             BackupService backupService = new BackupService();
             return backupService.SaveData(user, mails);
         }
+
+        internal void TryReadUserMails(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
