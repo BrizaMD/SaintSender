@@ -52,5 +52,20 @@ namespace SaintSender.Core.Services
                 return false;
             }
         }
+
+        public List<Mail> ReadMailsFromFile(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckForCorrectPassword(string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfUserSaved(string emailAdress)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
