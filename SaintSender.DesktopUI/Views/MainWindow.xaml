@@ -7,8 +7,10 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="SainSender"
-        Height="450"
-        Width="800">
+        Height="900"
+        Width="1440"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
@@ -18,11 +20,10 @@
             HorizontalAlignment="Left" 
             Height="60" 
             VerticalAlignment="Top" 
-            Width="800" 
+            Width="1432" 
             Background="White" 
             Opacity="0.8"
-            Margin="0,24,0,0" 
-            Grid.ColumnSpan="2">
+            Margin="0,24,0,0">
             <Grid Name="UserControls" Visibility="Visible">
 
                 <Grid.ColumnDefinitions>
@@ -43,8 +44,8 @@
                         Width="80"
                         Height="40"
                         FontSize="15" 
-                        Margin="1,208,56,-203" 
-                        Click="RefreshButtonClick"
+                        Margin="474,8,-554,-3" 
+                        Click="RefreshButtonClick" Grid.Column="1"
                         />
 
                 <Button
@@ -56,7 +57,7 @@
                     Background="black"
                     Width="80"
                     Height="40"
-                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="1,265,56,-260" Click="SendMailClick"
+                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="608,8,-688,-3" Click="SendMailClick" Grid.Column="1"
                 />
 
                 <Button
@@ -69,7 +70,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="1,149,56,-144" Click="BackUpButton"
+                Canvas.Left="1155" Canvas.Top="8" Margin="15,8,-95,-3" Click="BackUpButton" Grid.Column="1"
                 />
 
                 <Button
@@ -82,7 +83,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="210,348,-153,-343" Click="PreviousButtonClick"
+                Canvas.Left="1155" Canvas.Top="8" Margin="150,86,-230,-81" Click="PreviousButtonClick" Grid.Column="1"
                 />
 
                 <Button
@@ -95,7 +96,7 @@
                 Width="80"
                 Height="40"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="468,348,-411,-343" Click="NextButtonClick"
+                Canvas.Left="1155" Canvas.Top="8" Margin="909,86,-989,-81" Click="NextButtonClick" Grid.Column="1"
                 />
 
                 <Button
@@ -129,13 +130,20 @@
 
 
         <Grid>
-            <ListView Margin="96,110,96,49" 
-                      Width="600" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="139*"/>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="644*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Margin="210,149,224,10" 
                       Name="Inbox"
                       Background="White" 
                         Opacity="0.8"
-                      Visibility="Hidden"
-                      MouseDoubleClick="ListViewDoubleClick">
+                      Visibility="Visible"
+                      MouseDoubleClick="ListViewDoubleClick"
+                      FontSize="20"
+                      FontWeight="Bold"
+                      Width="1000" Grid.ColumnSpan="3">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -151,10 +159,10 @@
         </Grid>
 
         <Button Name="LoginState"
-                Margin="679,45,31,335" 
+                Margin="1298,28,10,802" 
                 Content="Login" 
                 Cursor="Hand"
-                FontSize="20"
+                FontSize="30"
                 FontWeight="Bold"
                 Click="DecideAccountAction">
             <Button.Template>
