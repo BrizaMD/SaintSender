@@ -9,10 +9,6 @@
     /// <summary>
     /// Interaction logic for Login.xaml.
     /// </summary>
-
-    // e-mail : cc.dreamteamdeluxe@gmail.com
-
-    // password : unclebob
     public partial class Login : Window
     {
         public Login()
@@ -33,8 +29,7 @@
             this.EmailBox.SelectAll();
             this.EmailBox.Focus();
             this.DialogResult = true;
-            Validation tryLogin = new Validation();
-            this.FullInbox = tryLogin.Connect(EmailBox.Text, PasswordBox.Password);
+            this.FullInbox = new Validation().Connect(EmailBox.Text, PasswordBox.Password);
             User = new User(EmailBox.Text, PasswordBox.Password);
         }
     }

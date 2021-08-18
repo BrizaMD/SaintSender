@@ -4,7 +4,6 @@
     using SaintSender.Core.Services;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.NetworkInformation;
