@@ -55,16 +55,58 @@ namespace SaintSender.Core.Services
 
         public List<Mail> ReadMailsFromFile(User user)
         {
-            XmlDocument mails = new XmlDocument();
-            mails.Load($"{user.EmailAdress}.xml");
-            return Deserialize(mails);
+            //XmlDocument mails = new XmlDocument();
+            //mails.Load($"{user.EmailAdress}.xml");
+
+
+            var projects = XDocument
+                                .Load($"{user.EmailAdress}.xml")
+                                .Root
+                                .Elements("Mails")
+                                .Select(p => new Mail
+                                {
+                                    Subject = (string)p.Element("Subject"),
+                                    From = (string)p.Element("From"),
+                                    Date = (DateTime)p.Element("Date"),
+                                    IsMailRead = (bool)p.Element("Read"),
+                                    Body = (string)p.Element("Body"),
+                                })
+                                .ToList();
+
+
+            //return Deserialize(mails);
+            return projects;
         }
 
         private List<Mail> Deserialize(XmlDocument mails)
         {
-            //var query = from c in mails.Root.Descendants("Mail")
-            //            select c.Element("firstName").Value + " " +
-            //                   c.Element("lastName").Value;
+
+
+            List<string> newMails = new List<string>();
+
+
+            //foreach (XmlNode node in root)
+            //{
+            //    string n = node.Name;
+
+            //mails.Add(new Mail()
+            //{
+            //    Subject = item.Subject,
+            //    From = item.From.ToString(),
+            //    Date = item.Date.DateTime,
+            //    Body = item.TextBody,
+            //});
+            //}
+
+            XmlNodeList elemList = mails.GetElementsByTagName("Mail");
+            //for (int i = 0; i < elemList.Count; i++)
+            //{
+            //    string text = elemList[i].InnerXml;
+
+
+            //}
+
+
 
             return null;
         }
