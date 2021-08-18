@@ -1,14 +1,11 @@
 ﻿namespace SaintSender.DesktopUI.ViewModels
 {
     using SaintSender.Core.Models;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Xml;
-    using System.Xml.Linq;
 
     class StayLoggedInCheckBox
     {
@@ -16,7 +13,6 @@
         {
             MessageBox.Show("You will stay logged in!");
             loggedInCheckBox.Foreground = Brushes.Red;
-
             SaveLoggedInUser(user);
         }
 
