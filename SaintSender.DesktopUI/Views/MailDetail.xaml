@@ -43,13 +43,14 @@
                 Background="black"
                 Height="40"
                 FontSize="15" 
-            Content="Close" Canvas.Left="3" Canvas.Top="298" Width="75" Click="CloseButton"/>
+            Content="Close" Canvas.Left="433" Canvas.Top="350" Width="75" Click="CloseButton"/>
 
         <Button Style="{StaticResource RoundButtonTemplate}"
                 BorderBrush="#fff"
                 Foreground="white"
                 Background="black"
                 Height="40"
-                FontSize="15"  Content="Reply" Canvas.Left="515" Canvas.Top="298" Width="75" Click="ReplyButton"/>
+                FontSize="15"  Content="Reply" Canvas.Left="515" Canvas.Top="350" Width="75" Click="ReplyButton"/>
+
     </Canvas>
 </Window>
