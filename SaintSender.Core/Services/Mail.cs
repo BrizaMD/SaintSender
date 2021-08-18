@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintSender.Core.Services
 {
@@ -24,10 +20,7 @@ namespace SaintSender.Core.Services
 
         public Mail()
         {
-        }
-        public override string ToString()
-        {
-            return this.Subject + " " + this.From;
+
         }
     }
 }
