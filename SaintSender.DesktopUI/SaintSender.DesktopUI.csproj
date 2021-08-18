@@ -81,6 +81,7 @@
     <Compile Include="Views\MailDetail.xaml.cs">
       <DependentUpon>MailDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\OfflineLogin.xaml.cs">
       <DependentUpon>OfflineLogin.xaml</DependentUpon>
     </Compile>
