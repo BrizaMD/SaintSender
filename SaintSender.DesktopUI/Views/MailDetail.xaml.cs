@@ -1,12 +1,9 @@
-﻿using SaintSender.Core.Models;
-using SaintSender.Core.Services;
-using System.Windows;
-
-namespace SaintSender.DesktopUI.Views
+﻿namespace SaintSender.DesktopUI.Views
 {
-    /// <summary>
-    /// Interaction logic for MailDetail.xaml
-    /// </summary>
+    using System.Windows;
+    using SaintSender.Core.Models;
+    using SaintSender.Core.Services;
+
     public partial class MailDetail : Window
     {
         private Mail mail;
@@ -33,7 +30,6 @@ namespace SaintSender.DesktopUI.Views
             Reply replyWindow = new Reply(mail, user);
             replyWindow.ShowDialog();
             this.Close();
-            
         }
     }
 }
