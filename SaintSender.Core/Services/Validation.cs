@@ -37,6 +37,10 @@
 
                     client.Disconnect(true);
                 }
+                catch (System.IO.IOException e)
+                {
+                    MessageBox.Show("Something went wrong when try to start automatic login!");
+                }
                 catch (AuthenticationException e)
                 {
                     MessageBox.Show("WRONG!!!!!!!");

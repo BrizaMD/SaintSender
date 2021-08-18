@@ -11,6 +11,9 @@
         Width="1440"
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize">
+
+
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="background.jpg" Stretch="UniformToFill"/>
@@ -18,86 +21,37 @@
         <Canvas 
             x:Name="Header" 
             HorizontalAlignment="Left" 
-            Height="60" 
+            Height="76" 
             VerticalAlignment="Top" 
             Width="1432" 
             Background="White" 
             Opacity="0.8"
             Margin="0,24,0,0">
-            <Grid Name="UserControls" Visibility="Visible">
+
+
+            <Calendar 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Height="189" 
+                    Width="256" Canvas.Left="-28" Canvas.Top="96"/>
+
+        </Canvas>
+
+        <Canvas 
+            x:Name="ToolBox" 
+            HorizontalAlignment="Left" 
+            Height="246" 
+            VerticalAlignment="Top" 
+            Width="176" 
+            Background="Transparent" 
+            Margin="1214,402,0,0">
+            <Grid Name="UserControls" 
+                  Visibility="Hidden">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="130*"/>
                     <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-
-
-
-
-                <Button
-                        Style="{StaticResource RoundButtonTemplate}"
-                        BorderBrush="#fff"
-                        Name="Refresh"
-                        Content="Refresh"
-                        Foreground="white"
-                        Background="black"
-                        Width="80"
-                        Height="40"
-                        FontSize="15" 
-                        Margin="474,8,-554,-3" 
-                        Click="RefreshButtonClick" Grid.Column="1"
-                        />
-
-                <Button
-                    Style="{StaticResource RoundButtonTemplate}"
-                    BorderBrush="#fff"
-                    Name="SendMail"
-                    Content="Send Mail"
-                    Foreground="white"
-                    Background="black"
-                    Width="80"
-                    Height="40"
-                    FontSize="15" Canvas.Left="1155" Canvas.Top="8" Margin="608,8,-688,-3" Click="SendMailClick" Grid.Column="1"
-                />
-
-                <Button
-                Style="{StaticResource RoundButtonTemplate}"
-                BorderBrush="#fff"
-                Name="BackUp"
-                Content="Backup"
-                Foreground="white"
-                Background="black"
-                Width="80"
-                Height="40"
-                FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="15,8,-95,-3" Click="BackUpButton" Grid.Column="1"
-                />
-
-                <Button
-                Style="{StaticResource RoundButtonTemplate}"
-                BorderBrush="#fff"
-                Name="Previous"
-                Content="Previous"
-                Foreground="white"
-                Background="black"
-                Width="80"
-                Height="40"
-                FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="150,86,-230,-81" Click="PreviousButtonClick" Grid.Column="1"
-                />
-
-                <Button
-                Style="{StaticResource RoundButtonTemplate}"
-                BorderBrush="#fff"
-                Name="Next"
-                Content="Next"
-                Foreground="white"
-                Background="black"
-                Width="80"
-                Height="40"
-                FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="909,86,-989,-81" Click="NextButtonClick" Grid.Column="1"
-                />
 
                 <Button
                 Style="{StaticResource RoundButtonTemplate}"
@@ -105,26 +59,71 @@
                 Name="ForgetMe"
                 Content="Forget Me"
                 Foreground="white"
-                Background="black"
-                Width="120"
-                Height="25"
+                Background="LightSteelBlue"
                 FontSize="15" 
-                Canvas.Left="1155" Canvas.Top="8" Margin="1,31,16,-11" Click="ForgetMeButton"
+                Canvas.Left="1155" 
+                Canvas.Top="8" Margin="-1205,-347,1185,615" Click="ForgetMeButton"
                 />
-
                 <CheckBox Canvas.Left="667" 
                           Canvas.Top="10" 
-                          Margin="10,8,-10,14" 
+                          Margin="-1205,-367,1205,653" 
                           Checked="StayLoggedInButton"
                           Name="LoggedInCheckBox"
                           IsChecked="False"
-                          Foreground="Green"
-                          FontWeight="Bold" Grid.ColumnSpan="2">
+                          Foreground="DarkSeaGreen"
+                          FontWeight="Bold">
                     Stay logged-in
                 </CheckBox>
-
-
             </Grid>
+            <Image Source="sendMailPng.png"
+                   Name="Send"
+                   Height="116" 
+                   Canvas.Left="-60" 
+                   Width="144"
+                   Visibility="Collapsed"
+                   MouseUp="SendMailClick" Canvas.Top="-396"
+                   />
+
+            <Image Source="save.png" 
+                   Name="Save"
+                   Height="116" 
+                   Canvas.Left="88" 
+                   Width="132" 
+                   Canvas.Top="358"
+                   Visibility="Collapsed"
+                   MouseUp="BackUpButton" 
+                   RenderTransformOrigin="0.902,0.534"/>
+
+            <Image Source="refresh.png" 
+                   Height="98" 
+                   Name="Refresh"
+                   Canvas.Left="-1196" 
+                   Width="90" 
+                   Canvas.Top="358"
+                   Visibility="Collapsed"
+                   MouseUp="RefreshButtonClick" RenderTransformOrigin="0.909,0.573"
+                   />
+
+
+            <Image Source="previous.png" 
+                   Height="76" 
+                   Canvas.Left="-704" 
+                   Width="62" 
+                   Canvas.Top="-134"
+                   Name="Prev"
+                   Visibility="Collapsed"
+                    MouseUp="PreviousButtonClick"
+                   />
+
+            <Image Source="next.png" 
+                   Height="76" 
+                   Canvas.Left="-436" 
+                   Width="62" 
+                   Canvas.Top="-134" 
+                   Name="Next"
+                   Visibility="Collapsed"
+                   MouseUp="NextButtonClick"
+                   />
 
         </Canvas>
 
@@ -135,11 +134,11 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="644*"/>
             </Grid.ColumnDefinitions>
-            <ListView Margin="210,149,224,10" 
+            <ListView Margin="201,344,233,255" 
                       Name="Inbox"
                       Background="White" 
                         Opacity="0.8"
-                      Visibility="Visible"
+                      Visibility="Collapsed"
                       MouseDoubleClick="ListViewDoubleClick"
                       FontSize="20"
                       FontWeight="Bold"
@@ -159,10 +158,10 @@
         </Grid>
 
         <Button Name="LoginState"
-                Margin="1298,28,10,802" 
+                Margin="1330,59,-22,771" 
                 Content="Login" 
                 Cursor="Hand"
-                FontSize="30"
+                FontSize="25"
                 FontWeight="Bold"
                 Click="DecideAccountAction">
             <Button.Template>
