@@ -16,6 +16,7 @@
     using System.Threading;
     using System.ComponentModel;
     using Validation = Core.Services.Validation;
+    using System.Windows.Controls.Primitives;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -43,7 +44,6 @@
             this.InitializeComponent();
             this.isLoggedIn = false;
             this.isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-
             if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
@@ -52,14 +52,13 @@
             }
             else
             {
-                MessageBox.Show("Yeyy we have internet!");
+                MessageBox.Show("Internet");
                 StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
                 if (stayLoggedInCheckBox.IsUserSaved())
                 {
                     this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
                     AutomaticLogin();
                 }
-
             }
         }
 
@@ -68,6 +67,10 @@
             if (this.isLoggedIn)
             {
                 LogOut();
+            }
+            else if (!isNetworkAvailable)
+            {
+                LoginOffline();
             }
             else
             {
@@ -86,6 +89,23 @@
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
             user = loginWindow.User;
+            this.LoginState.Content = "Logout";
+            this.isLoggedIn = true;
+            pageNumber = 0;
+            pageSize = 5;
+            DisplayMails(loginWindow);
+        }
+
+        private void LoginOffline()
+        {
+            OfflineLogin loginWindow = new OfflineLogin();
+            loginWindow.ShowDialog();
+            user = loginWindow.User;    // we have an isUserValid might have to use it here later
+            if (!loginWindow.isUserValid)
+            {
+                MessageBox.Show("No internet and there is no backup.");
+                return;
+            }
             this.LoginState.Content = "Logout";
             this.isLoggedIn = true;
             pageNumber = 0;
@@ -121,6 +141,14 @@
         private void DisplayMails(Login loginWindow)
         {
             mails = new InboxService().CreateMails(loginWindow.FullInbox);
+            ScrollInbox();
+            Inbox.Visibility = Visibility.Visible;
+            UserControls.Visibility = Visibility.Visible;
+        }
+
+        private void DisplayMails(OfflineLogin loginWindow)
+        {
+            mails = loginWindow.userMails;
             ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
@@ -185,6 +213,21 @@
             {
                 MailDetail detailWindow = new MailDetail(mail, user);
                 detailWindow.ShowDialog();
+            }
+        }
+
+        private void BackUp_Click(object sender, RoutedEventArgs e)
+        {
+            // user // all mails
+            Backup backup = new Backup();
+            bool isBackupSuccessful = backup.InitiateBackup(user, mails);
+            if (isBackupSuccessful)
+            {
+                MessageBox.Show("Your mails were backed up successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Backup unsuccessful.");
             }
         }
     }

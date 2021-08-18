@@ -81,6 +81,9 @@
     <Compile Include="Views\MailDetail.xaml.cs">
       <DependentUpon>MailDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OfflineLogin.xaml.cs">
+      <DependentUpon>OfflineLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reply.xaml.cs">
       <DependentUpon>Reply.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\OfflineLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reply.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
