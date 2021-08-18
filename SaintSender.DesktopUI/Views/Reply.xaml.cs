@@ -28,7 +28,6 @@ namespace SaintSender.DesktopUI.Views
 
         public void SendButton(object sender, RoutedEventArgs e)
         {
-            // IEnumerable<string> allEmails = new List<string>() { "get emails here" };
             if (EmailBox.Text == "")
             {
                 MessageBox.Show("At least one adress should be given!");

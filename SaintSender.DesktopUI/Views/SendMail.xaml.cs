@@ -1,6 +1,5 @@
 ﻿using SaintSender.Core.Models;
 using SaintSender.Core.Services;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace SaintSender.DesktopUI.Views
@@ -20,7 +19,6 @@ namespace SaintSender.DesktopUI.Views
 
         public void SendButton(object sender, RoutedEventArgs e)
         {
-            // IEnumerable<string> allEmails = new List<string>() { "get emails here" };
             if (EmailBox.Text == "")
             {
                 MessageBox.Show("At least one adress should be given!");
@@ -42,7 +40,6 @@ namespace SaintSender.DesktopUI.Views
 
             _emailSender.SendEmail(message);
             this.Close();
-
         }
 
         public void CloseButton(object sender, RoutedEventArgs e)
