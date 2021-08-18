@@ -147,7 +147,9 @@
                     <DataTemplate>
                         <WrapPanel>
                             <TextBlock Text="{Binding From}"/>
+                            <Image Source="line.png" Width="40" Height="80"/>
                             <TextBlock Text="{Binding Subject}"/>
+                            <Image Source="line.png" Width="40" Height="80"/>
                             <TextBlock Text="{Binding Date}"/>
                         </WrapPanel>
                     </DataTemplate>
