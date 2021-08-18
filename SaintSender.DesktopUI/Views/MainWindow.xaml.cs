@@ -44,13 +44,11 @@
             this.InitializeComponent();
             this.isLoggedIn = false;
             this.isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-            isNetworkAvailable = false;
+
             if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
 
-                BackupService bk = new BackupService();
-                bk.ReadMailsFromFile(new User("cc.dreamteamdeluxe@gmail.com", "unclebob"));
                 // load mails from file if authenticated user has saved before
             }
             else

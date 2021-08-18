@@ -55,14 +55,12 @@ namespace SaintSender.Core.Services
 
         public List<Mail> ReadMailsFromFile(User user)
         {
-            //XmlDocument mails = new XmlDocument();
-            //mails.Load($"{user.EmailAdress}.xml");
-
-
-            var projects = XDocument
+            var userMails = XDocument
                                 .Load($"{user.EmailAdress}.xml")
                                 .Root
-                                .Elements("Mails")
+                                .Element("User")
+                                .Element("Mails")
+                                .Elements("Mail")
                                 .Select(p => new Mail
                                 {
                                     Subject = (string)p.Element("Subject"),
@@ -73,42 +71,7 @@ namespace SaintSender.Core.Services
                                 })
                                 .ToList();
 
-
-            //return Deserialize(mails);
-            return projects;
-        }
-
-        private List<Mail> Deserialize(XmlDocument mails)
-        {
-
-
-            List<string> newMails = new List<string>();
-
-
-            //foreach (XmlNode node in root)
-            //{
-            //    string n = node.Name;
-
-            //mails.Add(new Mail()
-            //{
-            //    Subject = item.Subject,
-            //    From = item.From.ToString(),
-            //    Date = item.Date.DateTime,
-            //    Body = item.TextBody,
-            //});
-            //}
-
-            XmlNodeList elemList = mails.GetElementsByTagName("Mail");
-            //for (int i = 0; i < elemList.Count; i++)
-            //{
-            //    string text = elemList[i].InnerXml;
-
-
-            //}
-
-
-
-            return null;
+            return userMails;
         }
 
         public bool CheckForCorrectPassword(string emailAdress, string password)
