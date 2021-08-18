@@ -76,10 +76,13 @@ namespace SaintSender.Core.Services
 
         public bool CheckForCorrectPassword(string emailAdress, string password)
         {
-            XmlDocument infodoc = new XmlDocument();
-            infodoc.Load($"{emailAdress}.xml");
-            XmlElement directoryElement = infodoc.GetElementById("Password");
-            return directoryElement.GetAttribute("value").Equals(password);
+            var readPassword = XDocument
+                .Load($"{emailAdress}.xml")
+                .Root
+                .Element("User")
+                .Element("Password")
+                .Value;
+            return readPassword.Equals(password);
         }
 
         public bool CheckIfUserSaved(string emailAdress)

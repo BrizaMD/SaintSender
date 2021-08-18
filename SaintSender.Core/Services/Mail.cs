@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaintSender.Core.Services
 {
-
+    [Serializable]
     public class Mail
     {
         public string Subject { get; set; }

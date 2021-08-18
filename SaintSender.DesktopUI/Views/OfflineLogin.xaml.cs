@@ -1,4 +1,5 @@
 ﻿using SaintSender.Core.Models;
+using SaintSender.Core.Services;
 using SaintSender.DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace SaintSender.DesktopUI.Views
     /// </summary>
     public partial class OfflineLogin : Window
     {
+        public User User { get; set; }
+        public bool isUserValid { get; set; }
+        public List<Mail> userMails { get; set; }
+
         public OfflineLogin()
         {
             InitializeComponent();
@@ -35,10 +40,10 @@ namespace SaintSender.DesktopUI.Views
                 this.EmailBox.SelectAll();
                 this.EmailBox.Focus();
                 this.DialogResult = true;
-                // this.Connect(EmailBox.Text, PasswordBox.Password); <- check and read file
-                // User = new User(EmailBox.Text, PasswordBox.Password); <- load into this IF found
                 Backup backup = new Backup();
-                backup.TryReadUserMails(new User(EmailBox.Text, PasswordBox.Password));
+                User = new User(EmailBox.Text, PasswordBox.Password);
+                userMails = backup.TryReadUserMails(User);
+                isUserValid = userMails == null ? false : true;
             }
         }
 

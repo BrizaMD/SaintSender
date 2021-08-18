@@ -44,7 +44,6 @@
             this.InitializeComponent();
             this.isLoggedIn = false;
             this.isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
-
             if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
@@ -69,6 +68,10 @@
             {
                 LogOut();
             }
+            else if (!isNetworkAvailable)
+            {
+                LoginOffline();
+            }
             else
             {
                 Login();
@@ -86,6 +89,23 @@
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
             user = loginWindow.User;
+            this.LoginState.Content = "Logout";
+            this.isLoggedIn = true;
+            pageNumber = 0;
+            pageSize = 5;
+            DisplayMails(loginWindow);
+        }
+
+        private void LoginOffline()
+        {
+            OfflineLogin loginWindow = new OfflineLogin();
+            loginWindow.ShowDialog();
+            user = loginWindow.User;    // we have an isUserValid might have to use it here later
+            if (!loginWindow.isUserValid)
+            {
+                MessageBox.Show("No internet and there is no backup.");
+                return;
+            }
             this.LoginState.Content = "Logout";
             this.isLoggedIn = true;
             pageNumber = 0;
@@ -121,6 +141,14 @@
         private void DisplayMails(Login loginWindow)
         {
             mails = new InboxService().CreateMails(loginWindow.FullInbox);
+            ScrollInbox();
+            Inbox.Visibility = Visibility.Visible;
+            UserControls.Visibility = Visibility.Visible;
+        }
+
+        private void DisplayMails(OfflineLogin loginWindow)
+        {
+            mails = loginWindow.userMails;
             ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
