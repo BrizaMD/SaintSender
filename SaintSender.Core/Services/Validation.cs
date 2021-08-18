@@ -24,8 +24,6 @@
                 List<MimeKit.MimeMessage> fullInbox = new List<MimeKit.MimeMessage>();
                 try
                 {
-                    // client.Connect("smtp.gmail.com", 465, true);
-                    // client.Authenticate(user, password);
                     client.Connect("imap.gmail.com", 993, true);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
                     client.AuthenticationMechanisms.Remove("NTLM");
@@ -40,12 +38,12 @@
                     }
 
                     client.Disconnect(true);
+                    return fullInbox;
                 }
                 catch (AuthenticationException e)
                 {
-                    MessageBox.Show("WRONG!!!!!!!");
+                    return null;
                 }
-                return fullInbox;
             }
         }
 
