@@ -133,6 +133,11 @@
             this.ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
+            Send.Visibility = Visibility.Visible;
+            Refresh.Visibility = Visibility.Visible;
+            Save.Visibility = Visibility.Visible;
+            Prev.Visibility = Visibility.Visible;
+            Next.Visibility = Visibility.Visible;
         }
 
         private void LoginSetup()
