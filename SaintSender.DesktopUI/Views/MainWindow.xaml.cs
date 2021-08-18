@@ -4,8 +4,8 @@
     using SaintSender.Core.Services;
     using SaintSender.DesktopUI.ViewModels;
     using SaintSender.DesktopUI.Views;
+    using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using System.Net.NetworkInformation;
     using System.Timers;
@@ -19,6 +19,7 @@
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Timer refreshInboxTimer;
         private MainWindowViewModel mainWindowViewModel;
         private bool isLoggedIn;
         private bool isNetworkAvailable;
@@ -26,28 +27,25 @@
         private int pageNumber = 0;
         private int pageSize = 5;
         private User user;
-        private ScrollInInbox scroll;
-        private BackgroundWorker worker;
-
-        private static System.Timers.Timer refreshInboxTimer;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
-            // set DataContext to the ViewModel object
             this.mainWindowViewModel = new MainWindowViewModel();
             this.DataContext = this.mainWindowViewModel;
             this.InitializeComponent();
             this.isLoggedIn = false;
             this.isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
+            this.StartApp();
+        }
+
+        private void StartApp()
+        {
             if (!this.isNetworkAvailable)
             {
                 MessageBox.Show("No internet connection");
-
-                // load mails from file if authenticated user has saved before
             }
             else
             {
@@ -65,7 +63,7 @@
             }
         }
 
-        private void UserAccountActions(object sender, RoutedEventArgs e)
+        private void DecideAccountAction(object sender, RoutedEventArgs e)
         {
             if (this.isLoggedIn)
             {
@@ -81,7 +79,7 @@
             }
         }
 
-        private void SendMail_Click(object sender, RoutedEventArgs e)
+        private void SendMailClick(object sender, RoutedEventArgs e)
         {
             SendMail sendMail = new SendMail(user);
             sendMail.ShowDialog();
@@ -91,55 +89,66 @@
         {
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
-
-            user = loginWindow.User;
+            this.user = loginWindow.User;
 
             if (loginWindow.FullInbox is null)
             {
                 MessageBox.Show("Wrong e-mail or password!");
                 return;
             }
-            this.LoginState.Content = "Logout";
-            this.isLoggedIn = true;
-            pageNumber = 0;
-            pageSize = 5;
-            DisplayMails(loginWindow);
-            refreshInboxTimer = new Timer(60000);
-            refreshInboxTimer.Elapsed += new ElapsedEventHandler(RefreshInbox);
-            refreshInboxTimer.Enabled = true;
+
+            this.LoginSetup();
+            this.DisplayMails(loginWindow);
+            this.StartAutoRefresh();
         }
 
         private void LoginOffline()
         {
             OfflineLogin loginWindow = new OfflineLogin();
             loginWindow.ShowDialog();
-            user = loginWindow.User;    // we have an isUserValid might have to use it here later
+            this.user = loginWindow.User;
+
             if (!loginWindow.isUserValid)
             {
                 MessageBox.Show("No internet and there is no backup.");
                 return;
             }
-            this.LoginState.Content = "Logout";
-            this.isLoggedIn = true;
-            pageNumber = 0;
-            pageSize = 5;
-            DisplayMails(loginWindow);
+
+            this.LoginSetup();
+            this.DisplayMails(loginWindow);
         }
 
         private void AutomaticLogin()
         {
-            Validation tryLogin = new Validation();
-            mails = new InboxService()
-                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
-            pageNumber = 0;
-            pageSize = 5;
-            this.isLoggedIn = true;
-            this.LoginState.Content = "Logout";
+            this.mails = new InboxService()
+                .CreateMails(new Validation()
+                .Connect(this.user.EmailAdress, this.user.Password));
+            this.LoginSetup();
+            this.SetupUi();
+        }
+
+        private void SetupUi()
+        {
             LoggedInCheckBox.Foreground = Brushes.Green;
             LoggedInCheckBox.IsChecked = true;
-            ScrollInbox();
+            this.ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
+        }
+
+        private void LoginSetup()
+        {
+            this.LoginState.Content = "Logout";
+            this.isLoggedIn = true;
+            this.pageNumber = 0;
+            this.pageSize = 5;
+        }
+
+        private void StartAutoRefresh()
+        {
+            refreshInboxTimer = new Timer(60000);
+            refreshInboxTimer.Elapsed += new ElapsedEventHandler(RefreshInbox);
+            refreshInboxTimer.Enabled = true;
         }
 
         private void LogOut()
@@ -153,36 +162,40 @@
 
         private void DisplayMails(Login loginWindow)
         {
-            mails = new InboxService().CreateMails(loginWindow.FullInbox);
-            ScrollInbox();
-            Inbox.Visibility = Visibility.Visible;
-            UserControls.Visibility = Visibility.Visible;
+            this.mails = new InboxService().CreateMails(loginWindow.FullInbox);
+            this.SetupDisplayMailUi();
         }
 
         private void DisplayMails(OfflineLogin loginWindow)
         {
-            mails = loginWindow.userMails;
-            ScrollInbox();
+            this.mails = loginWindow.userMails;
+            this.SetupDisplayMailUi();
+        }
+
+        private void SetupDisplayMailUi()
+        {
+            this.ScrollInbox();
             Inbox.Visibility = Visibility.Visible;
             UserControls.Visibility = Visibility.Visible;
         }
 
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
         {
-            ScrollInbox();
-            this.pageNumber -= 1;
+            this.ScrollInbox();
+            this.pageNumber--;
         }
 
         private void NextButtonClick(object sender, RoutedEventArgs e)
         {
-            ScrollInbox();
+            this.ScrollInbox();
             this.pageNumber++;
         }
 
         private void ScrollInbox()
         {
-            this.Inbox.ItemsSource = this.mails.Skip((this.pageNumber - 1) * this.pageSize)
-                                                .Take(this.pageSize);
+            this.Inbox.ItemsSource = this.mails
+                                         .Skip((this.pageNumber - 1) * this.pageSize)
+                                         .Take(this.pageSize);
         }
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
@@ -194,29 +207,18 @@
         {
             this.Dispatcher.Invoke(() =>
             {
-                Inbox.IsEnabled = false;
-                pageNumber = 0;
-                pageSize = 5;
-                Validation tryLogin = new Validation();
-
-                mails = new InboxService()
-                        .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
-
-
-                ScrollInbox();
-                Inbox.IsEnabled = true;
+                RefreshInbox();
             });
         }
 
         private void RefreshInbox()
         {
-
             Inbox.IsEnabled = false;
             pageNumber = 0;
             pageSize = 5;
             Validation tryLogin = new Validation();
-            mails = new InboxService()
-                   .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+            this.mails = new InboxService()
+                   .CreateMails(new Validation().Connect(this.user.EmailAdress, this.user.Password));
             ScrollInbox();
             Inbox.IsEnabled = true;
         }
@@ -235,7 +237,7 @@
             }
         }
 
-        private void ForgetMe_Click(object sender, RoutedEventArgs e)
+        private void ForgetMeButton(object sender, RoutedEventArgs e)
         {
             StayLoggedInCheckBox checkBox = new StayLoggedInCheckBox();
             checkBox.LoggedOff(LoggedInCheckBox, user);
@@ -252,11 +254,9 @@
             }
         }
 
-        private void BackUp_Click(object sender, RoutedEventArgs e)
+        private void BackUpButton(object sender, RoutedEventArgs e)
         {
-            // user // all mails
-            Backup backup = new Backup();
-            bool isBackupSuccessful = backup.InitiateBackup(user, mails);
+            bool isBackupSuccessful = new Backup().InitiateBackup(user, mails);
             if (isBackupSuccessful)
             {
                 MessageBox.Show("Your mails were backed up successfully.");
