@@ -1,10 +1,9 @@
-﻿using SaintSender.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SaintSender.Core.Services
+﻿namespace SaintSender.Core.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using SaintSender.Core.Interfaces;
+
     public class InboxService : IInbox
     {
         private List<Mail> SortMail(List<Mail> mails)

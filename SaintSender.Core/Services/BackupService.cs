@@ -1,16 +1,14 @@
-﻿using SaintSender.Core.Interfaces;
-using SaintSender.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-
-namespace SaintSender.Core.Services
+﻿namespace SaintSender.Core.Services
 {
+    using SaintSender.Core.Interfaces;
+    using SaintSender.Core.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Xml;
+    using System.Xml.Linq;
+
     public class BackupService : IBackUp
     {
         public bool SaveData(User user, List<Mail> mails)

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace SaintSender.Core.Services
+﻿namespace SaintSender.Core.Services
 {
+    using System;
+
     [Serializable]
     public class Mail
     {

@@ -1,11 +1,11 @@
-﻿using MailKit.Net.Smtp;
-using MimeKit;
-using SaintSender.Core.Interfaces;
-using SaintSender.Core.Models;
-using System;
-
-namespace SaintSender.Core.Services
+﻿namespace SaintSender.Core.Services
 {
+    using System;
+    using MailKit.Net.Smtp;
+    using MimeKit;
+    using SaintSender.Core.Interfaces;
+    using SaintSender.Core.Models;
+
     public class EmailSender : IEmailSender
     {
         private readonly EmailConfiguration _emailConfig;
