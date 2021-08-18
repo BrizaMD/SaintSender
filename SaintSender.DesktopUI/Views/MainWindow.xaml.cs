@@ -187,5 +187,20 @@
                 detailWindow.ShowDialog();
             }
         }
+
+        private void BackUp_Click(object sender, RoutedEventArgs e)
+        {
+            // user // all mails
+            Backup backup = new Backup();
+            bool isBackupSuccessful = backup.InitiateBackup(user, mails);
+            if (isBackupSuccessful)
+            {
+                MessageBox.Show("Your mails were backed up successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Backup unsuccessful.");
+            }
+        }
     }
 }
