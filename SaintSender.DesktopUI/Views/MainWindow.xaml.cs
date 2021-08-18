@@ -8,15 +8,11 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Net.NetworkInformation;
+    using System.Timers;
     using System.Windows;
-    using System.Windows.Media;
-    using System;
-    using SaintSender.Core.Models;
     using System.Windows.Controls;
-    using System.Threading;
-    using System.ComponentModel;
+    using System.Windows.Media;
     using Validation = Core.Services.Validation;
-    using System.Windows.Controls.Primitives;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -32,6 +28,9 @@
         private User user;
         private ScrollInInbox scroll;
         private BackgroundWorker worker;
+
+        private static System.Timers.Timer refreshInboxTimer;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -52,13 +51,17 @@
             }
             else
             {
-                MessageBox.Show("Internet");
-                StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
-                if (stayLoggedInCheckBox.IsUserSaved())
-                {
-                    this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
-                    AutomaticLogin();
-                }
+                InitializeOnlineLogin();
+            }
+        }
+
+        private void InitializeOnlineLogin()
+        {
+            StayLoggedInCheckBox stayLoggedInCheckBox = new StayLoggedInCheckBox();
+            if (stayLoggedInCheckBox.IsUserSaved())
+            {
+                this.user = stayLoggedInCheckBox.ReadUserDataFromFile();
+                AutomaticLogin();
             }
         }
 
@@ -94,6 +97,13 @@
             pageNumber = 0;
             pageSize = 5;
             DisplayMails(loginWindow);
+
+            refreshInboxTimer = new Timer(60000);
+
+            refreshInboxTimer.Elapsed += new ElapsedEventHandler(RefreshInbox);
+
+            //refreshInboxTimer.Interval = 2000;
+            refreshInboxTimer.Enabled = true;
         }
 
         private void LoginOffline()
@@ -174,15 +184,38 @@
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
+            RefreshInbox();
+        }
+
+        private void RefreshInbox(object source, ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                Inbox.IsEnabled = false;
+                pageNumber = 0;
+                pageSize = 5;
+                Validation tryLogin = new Validation();
+
+                mails = new InboxService()
+                        .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+
+
+                ScrollInbox();
+                Inbox.IsEnabled = true;
+            });
+        }
+
+        private void RefreshInbox()
+        {
+
             Inbox.IsEnabled = false;
             pageNumber = 0;
             pageSize = 5;
             Validation tryLogin = new Validation();
             mails = new InboxService()
-                    .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
+                   .CreateMails(tryLogin.Connect(this.user.EmailAdress, this.user.Password));
             ScrollInbox();
             Inbox.IsEnabled = true;
-
         }
 
         private void StayLoggedInButton(object sender, RoutedEventArgs e)
