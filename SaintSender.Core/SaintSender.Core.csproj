@@ -70,9 +70,7 @@
     <Compile Include="Services\InboxService.cs" />
     <Compile Include="Services\Mail.cs" />
     <Compile Include="Services\Validation.cs" />
-    <Compile Include="Services\GreetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\IGreetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\ReadMe.md" />
