@@ -138,7 +138,7 @@
                       Name="Inbox"
                       Background="White" 
                         Opacity="0.8"
-                      Visibility="Visible"
+                      Visibility="Collapsed"
                       MouseDoubleClick="ListViewDoubleClick"
                       FontSize="20"
                       FontWeight="Bold"
