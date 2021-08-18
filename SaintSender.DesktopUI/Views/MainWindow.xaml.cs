@@ -91,18 +91,21 @@
         {
             Login loginWindow = new Login();
             loginWindow.ShowDialog();
+
             user = loginWindow.User;
+
+            if (loginWindow.FullInbox is null)
+            {
+                MessageBox.Show("Wrong e-mail or password!");
+                return;
+            }
             this.LoginState.Content = "Logout";
             this.isLoggedIn = true;
             pageNumber = 0;
             pageSize = 5;
             DisplayMails(loginWindow);
-
             refreshInboxTimer = new Timer(60000);
-
             refreshInboxTimer.Elapsed += new ElapsedEventHandler(RefreshInbox);
-
-            //refreshInboxTimer.Interval = 2000;
             refreshInboxTimer.Enabled = true;
         }
 
