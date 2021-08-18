@@ -23,7 +23,7 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             BackupService backupService = new BackupService();
             bool userHasSavedBefore = backupService.CheckIfUserSaved(user.EmailAdress);
-            bool userEnteredCorrectPassword = backupService.CheckForCorrectPassword(user.Password);
+            bool userEnteredCorrectPassword = backupService.CheckForCorrectPassword(user.EmailAdress, user.Password);
             if (userHasSavedBefore && userEnteredCorrectPassword)
             {
                 return backupService.ReadMailsFromFile(user);

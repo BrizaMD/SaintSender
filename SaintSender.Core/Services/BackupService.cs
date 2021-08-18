@@ -55,17 +55,31 @@ namespace SaintSender.Core.Services
 
         public List<Mail> ReadMailsFromFile(User user)
         {
-            throw new NotImplementedException();
+            XmlDocument mails = new XmlDocument();
+            mails.Load($"{user.EmailAdress}.xml");
+            return Deserialize(mails);
         }
 
-        public bool CheckForCorrectPassword(string password)
+        private List<Mail> Deserialize(XmlDocument mails)
         {
-            throw new NotImplementedException();
+            //var query = from c in mails.Root.Descendants("Mail")
+            //            select c.Element("firstName").Value + " " +
+            //                   c.Element("lastName").Value;
+
+            return null;
+        }
+
+        public bool CheckForCorrectPassword(string emailAdress, string password)
+        {
+            XmlDocument infodoc = new XmlDocument();
+            infodoc.Load($"{emailAdress}.xml");
+            XmlElement directoryElement = infodoc.GetElementById("Password");
+            return directoryElement.GetAttribute("value").Equals(password);
         }
 
         public bool CheckIfUserSaved(string emailAdress)
         {
-            throw new NotImplementedException();
+            return File.Exists($"{emailAdress}.xml");
         }
     }
 }
