@@ -69,6 +69,7 @@
     <Compile Include="GreetServiceTests.cs" />
     <Compile Include="InboxServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
