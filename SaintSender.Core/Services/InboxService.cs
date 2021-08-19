@@ -1,8 +1,8 @@
 ﻿namespace SaintSender.Core.Services
 {
+    using SaintSender.Core.Interfaces;
     using System.Collections.Generic;
     using System.Linq;
-    using SaintSender.Core.Interfaces;
 
     public class InboxService : IInbox
     {

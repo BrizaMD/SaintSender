@@ -1,10 +1,10 @@
 ﻿namespace SaintSender.Core.Services
 {
-    using System;
     using MailKit.Net.Smtp;
     using MimeKit;
     using SaintSender.Core.Interfaces;
     using SaintSender.Core.Models;
+    using System;
 
     public class EmailSender : IEmailSender
     {
