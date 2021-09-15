@@ -25,8 +25,8 @@
         private MimeMessage CreateEmailMessage(Message message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress(_emailConfig.SMTPFrom));
-            emailMessage.To.Add(new MailboxAddress(message.To));
+            emailMessage.From.Add(new MailboxAddress("sender",_emailConfig.SMTPFrom));
+            emailMessage.To.Add(new MailboxAddress("sender",message.To));
             emailMessage.Subject = message.Subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
 

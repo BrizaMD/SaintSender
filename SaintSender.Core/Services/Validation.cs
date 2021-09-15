@@ -39,11 +39,11 @@
                 }
                 catch (System.IO.IOException e)
                 {
-                    MessageBox.Show("Something went wrong when try to start automatic login!");
+                    MessageBox.Show(e.Message);
                 }
                 catch (AuthenticationException e)
                 {
-                    MessageBox.Show("WRONG!!!!!!!");
+                    MessageBox.Show(e.Message);
                 }
                 return fullInbox;
             }
