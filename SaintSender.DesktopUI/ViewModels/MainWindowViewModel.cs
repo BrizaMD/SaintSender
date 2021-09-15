@@ -1,9 +1,7 @@
-﻿namespace SaintSender.DesktopUI
+﻿namespace SaintSender.DesktopUI.ViewModels
 {
     internal class MainWindowViewModel
     {
-        public MainWindowViewModel()
-        {
-        }
+
     }
 }

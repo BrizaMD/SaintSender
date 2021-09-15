@@ -1,12 +1,12 @@
-﻿namespace SaintSender.DesktopUI.ViewModels
-{
-    using SaintSender.Core.Models;
-    using System.IO;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-    using System.Xml;
+﻿using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Xml;
+using SaintSender.Core.Models;
 
+namespace SaintSender.DesktopUI.ViewModels
+{
     class StayLoggedInCheckBox
     {
         public void StayLoggedIn(CheckBox loggedInCheckBox, User user)
@@ -18,10 +18,10 @@
 
         private void SaveLoggedInUser(User user)
         {
-            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+            var xmlWriterSettings = new XmlWriterSettings();
             xmlWriterSettings.Indent = true;
             xmlWriterSettings.NewLineOnAttributes = true;
-            using (XmlWriter xmlWriter = XmlWriter.Create("loggedInUser.xml", xmlWriterSettings))
+            using (var xmlWriter = XmlWriter.Create("loggedInUser.xml", xmlWriterSettings))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("Users");
@@ -49,10 +49,10 @@
 
         public User ReadUserDataFromFile()
         {
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             doc.Load("loggedInUser.xml");
-            string email = doc.DocumentElement.FirstChild.SelectSingleNode("Email").InnerText;
-            string password = doc.DocumentElement.FirstChild.SelectSingleNode("Password").InnerText;
+            var email = doc.DocumentElement.FirstChild.SelectSingleNode("Email").InnerText;
+            var password = doc.DocumentElement.FirstChild.SelectSingleNode("Password").InnerText;
             return new User(email, password);
         }
 
